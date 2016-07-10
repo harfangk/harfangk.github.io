@@ -7,22 +7,21 @@
 
 # Site settings
 title:
-  en: Your awesome title
-  fr: Votre titre génial
-email: your-email@domain.com
+  en: Harfang's Perch
+  ko: 흰부엉이 보금자리
+email: bonghyun.d.kim@gmail.com
 description:
-  en: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-  fr: Écrivez une super description de votre nouveau site ici. Vous pouvez modifier cette ligne dans _config.yml. Elle apparaîtra dans la balise meta description (pour les résultats sur Google) et dans le fil RSS feed.xml.
+  en: On software. Ruby, Ruby on Rails, Swift, Cocoa, etc.
+  ko: 소프트웨어 전반에 대한 개인 블로그. Ruby, Ruby on Rails, Swift, Cocoa 등등.
 index:
   en:
-  fr: accueil.html
+  ko: index_ko.html
 feed:
   en: /feed.xml
-  fr: /flux.xml
+  ko: /feed_ko.xml
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "http://harfangk.github.io" # the base hostname & protocol for your site
+github_username:  harfangk
 
 # Build settings
 markdown: kramdown
