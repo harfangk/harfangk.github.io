@@ -12,8 +12,9 @@ This post is a summary of the advice I gave them. It aims at dispelling some mis
 
 This post assumes a few things:
 
-	1. You're building a standard mobile/web application. If you're building something different like embedded software integrated with hardware, some of this advice doesn't apply to you.
-	2. You've done some basic research, enough to have cursory understanding of the jargons thrown around in this field but to be still baffled by them. I mean terms like HTML, CSS, JavaScript, frontend/backend, native/hybrid application, and so on. I want to help you organize those fragments of technical knowledge in a coherent business context, but for obtaining basic knowledge, there's a far better teacher than I - it's called google.
+1. You're building a standard mobile/web application. If you're building something different like embedded software integrated with hardware, some of this advice doesn't apply to you.
+
+2. You've done some basic research, enough to have cursory understanding of the jargons thrown around in this field but to be still baffled by them. I mean terms like HTML, CSS, JavaScript, frontend/backend, native/hybrid application, and so on. I want to help you organize those fragments of technical knowledge in a coherent business context, but for obtaining basic knowledge, there's a far better teacher than I - it's called google.
 	
 Let me start by explaining what a [technology stack](https://www.wikiwand.com/en/Solution_stack) is. It's a jargon that's generally used to describe a combination of software products and programming languages used to create a software. It includes programming language, database, development framework, and pretty much all the tools and parts someone would consider as "technical stuff." It is the term I will use in this post to refer to all the technical stuff.
 
@@ -27,21 +28,21 @@ This is called finding the [product/market fit](https://www.wikiwand.com/en/Prod
 
 I believe that a tech stack for startups requires these characteristics: 
 
-	• High productivity
-	  It allows developers to write valuable software quickly. Maintainability is still important, but being able to quickly produce [minimum viable product](https://www.wikiwand.com/en/Minimum_viable_product) is much heavily emphasized.
-	• Good enough reliability
-	  It can be generally trusted to work well. Although there could still be some edge cases, most common bugs and security issues have been already addressed.
-	• Developer availability
-	  It should be possible to hire additional or replacement developers when required. 
-	• Community support
-	  There are people who can answer questions about that language or framework, but it doesn't require dedicated teams of professional technical support.
+* High productivity  
+It allows developers to write valuable software quickly. Maintainability is still important, but being able to quickly produce [minimum viable product](https://www.wikiwand.com/en/Minimum_viable_product) is much heavily emphasized.
+* Good enough reliability  
+It can be generally trusted to work well. Although there could still be some edge cases, most common bugs and security issues have been already addressed.
+* Developer availability  
+It should be possible to hire additional or replacement developers when required. 
+* Community support  
+There are people who can answer questions about that language or framework, but it doesn't require dedicated teams of professional technical support.
 
 In other words, it should allow you to build your product quickly with as little obstruction as possible. As of October 2016, there are four popular programming languages for startup mobile/web application. In the format of programming language/most popular development framework pair, they are:
  
-	• JavaScript/Node.js 
-	• Ruby/Ruby on Rails
-	• Python/Django
-	• PHP/Laravel. 
+* JavaScript/Node.js 
+* Ruby/Ruby on Rails
+* Python/Django
+* PHP/Laravel. 
 	
 There are other language/framework pairs too, but startups tend to stick to those four. Other tech stacks are less appropriate for startups because they have low productivity (e.g. C#/.NET, Java/Spring), are too new (e.g. Elixir/Phoenix, Swift/Vapor), or too exotic (e.g. Haskell/Yesod).
 
