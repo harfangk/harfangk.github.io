@@ -13,14 +13,14 @@ lang: ko
 {% highlight bash %}
 $ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new.ez
 {% endhighlight %}
-라고 타이핑하면 1.2.x 버전의 최신 Phoenix를 설치합니다.
+라고 타이핑하면 1.2.x 버전의 최신 Phoenix가 설치됩니다.
 
-예제 코드에 문제가 발생하는 것을 원천적으로 피하고 싶으시면 그냥 다음 커맨드를 사용해서 Phoenix 1.1.6을 설치하시면 됩니다.
+예제 코드에 문제가 발생하는 것 자체를 피하고 싶으시면 그냥 아래 커맨드를 사용해서 Phoenix 1.1.6을 설치하시면 됩니다.
 {% highlight bash %}
 $ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new-1.1.6.ez
 {% endhighlight %}
 
-하지만 저처럼 최신 버전을 사용하는 것을 선호하신다면 문제가 있을 때마다 이 글을 참고하시면 도움이 될 겁니다. 물론 Phoenix 프레임워크의 변경점을 직접 찾아보시는 편이 배우기에도 더 좋은만큼 스스로 찾아보시는 것을 더 추천합니다. 별로 찾기 어렵지 않거든요.
+하지만 저처럼 최신 버전을 사용하는 것을 선호하신다면 문제가 있을 때마다 이 글을 참고하는게 도움이 될 겁니다. 물론 Phoenix 프레임워크의 변경점을 직접 찾아보시는 편이 배우기에도 더 좋은만큼 스스로 찾아보시는 것을 더 추천합니다. 별로 찾기 어렵지 않거든요.
 
 저자들의 말에 따르면 Phoenix 1.3이 출시되면 그에 맞춰서 책을 개정한다고 하니 그 이후로는 예제 코드 문제가 없어질 것 같습니다.
 

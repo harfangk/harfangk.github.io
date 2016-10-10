@@ -6,7 +6,7 @@ title: Resolving Issues with Example Code in Programming Phoenix (Published on 2
 lang: en
 ---
 
-If you follow the Programming Phoenix book now, there are several broken example codes that will cause error, fail to pass test, or show deprecation warning. I documented such codes from Part I of the book and how to resolve them.
+If you follow the code examples in Programming Phoenix book now, there are several broken ones that will cause error, fail to pass test, or show deprecation warning. I documented such codes from Part I of the book and how to resolve them.
 
 Those codes break because the book is written for Phoenix 1.1.x. But if you follow the installation instruction and type  
 
@@ -20,7 +20,7 @@ If you do not want to deal with this issue at all, install Phoenix 1.1.6 with th
 $ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new-1.1.6.ez
 {% endhighlight %}
 
-But if you want to stick to the latest version like I did, this post could be useful. But I still recommend trying to look up the changes in Phoenix yourself instead of just looking at this post, because you learn more that way. Also, it's more fun.
+If you want to stick to the latest version like I did, this post could be useful. But I still recommend trying to look up the changes in Phoenix yourself instead of just looking at this post, because you learn more that way. Also, it's more fun.
 
 The authors of the book plan to update the book when Phoenix 1.3 is released, which will fix these broken examples for good.
 
