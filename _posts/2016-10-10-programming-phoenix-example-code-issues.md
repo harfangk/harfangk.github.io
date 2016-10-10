@@ -71,6 +71,48 @@ end
 
 `:empty` is replaced by `%{}` in Ecto 2.0. It will still work with `:empty`, though. Strangely, Video and Category models that show up in later chapters use `%{}`. 
 
+#### Presenting User Account Links, Chapter 5 (PDF page 86)
+Your *rumbl/web/templates/layout/app.html.eex* will initially look like this:
+{% highlight html %}
+<header class="header">
+  <nav role="navigation">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+    </ul>
+  </nav>
+  <span class="logo"></span>
+</header>
+{% endhighlight %}
+
+This is slightly different from what is expected in the book. For example, it uses `header` tag instead of `div` tag. The authors instruct us to change it like this.
+{% highlight html %}
+<div class="header">  <ol class="breadcrumb text-right">    <%= if @current_user do %>      <li><%= @current_user.username %></li>
+      <li>        <%= link "Log out", to: session_path(@conn, :delete, @current_user),
+         method: "delete" %>      </li>    <% else %>      <li><%= link "Register", to: user_path(@conn, :new) %></li> 
+      <li><%= link "Log in", to: session_path(@conn, :new) %></li>    <% end %> </ol>  <span class="logo"></span>
+</div>
+{% endhighlight %}
+
+This is what I did. The rendered page looks slightly different, but it's working fine so far.
+
+{% highlight html %}
+<header class="header">
+  <nav role="navigation">
+    <ul class="nav nav-pills pull-right">
+      <%= if @current_user do %>
+        <li><%= @current_user.username %></li>
+        <li><%= link "Log out", to: session_path(@conn, :delete, current_user), 
+        method: "delete" %></li>
+      <% else %>  
+        <li><%= link "Register", to: user_path(@conn, :new) %></li>
+        <li><%= link "Log in", to: session_path(@conn, :new) %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <span class="logo"></span>
+</header>
+{% endhighlight %}
+
 #### Examining the Generated Controller and View, Chapter 6 (PDF page 97)
 It mentions that there should be this line in *rumbl/web/controllers/video_controller.ex*:
 {% highlight elixir %}

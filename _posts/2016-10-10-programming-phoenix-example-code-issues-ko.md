@@ -72,6 +72,48 @@ end
 
 Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다.. `:empty`를 사용해도 아직 작동은 하더군요.. 왠지 모르겠지만 책 뒷부분에 나오는 Video와 Category 모델에는 저자들이 `%{}`를 사용했습니다.. 
 
+#### Presenting User Account Links, Chapter 5 (PDF page 86)
+*rumbl/web/templates/layout/app.html.eex* 를 열어보면 아래와 같은 코드가 있을 겁니다.
+{% highlight html %}
+<header class="header">
+  <nav role="navigation">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+    </ul>
+  </nav>
+  <span class="logo"></span>
+</header>
+{% endhighlight %}
+
+`div` 대신 `header` 태그를 쓰는 등 책에 나와있는 코드랑은 조금 다릅니다. Phoenix가 업데이트 되면서 자동생성된 코드가 변경된 것 같습니다. 저자는 아래와 같이 바꾸라고 합니다. 
+{% highlight html %}
+<div class="header">  <ol class="breadcrumb text-right">    <%= if @current_user do %>      <li><%= @current_user.username %></li>
+      <li>        <%= link "Log out", to: session_path(@conn, :delete, @current_user),
+         method: "delete" %>      </li>    <% else %>      <li><%= link "Register", to: user_path(@conn, :new) %></li> 
+      <li><%= link "Log in", to: session_path(@conn, :new) %></li>    <% end %> </ol>  <span class="logo"></span>
+</div>
+{% endhighlight %}
+
+저는 아래 나온 것처럼 했습니다. 렌더링 된 페이지가 조금 다르긴 하지만 별 문제 없이 동작하더군요.
+
+{% highlight html %}
+<header class="header">
+  <nav role="navigation">
+    <ul class="nav nav-pills pull-right">
+      <%= if @current_user do %>
+        <li><%= @current_user.username %></li>
+        <li><%= link "Log out", to: session_path(@conn, :delete, current_user), 
+        method: "delete" %></li>
+      <% else %>  
+        <li><%= link "Register", to: user_path(@conn, :new) %></li>
+        <li><%= link "Log in", to: session_path(@conn, :new) %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <span class="logo"></span>
+</header>
+{% endhighlight %}
+
 #### Examining the Generated Controller and View, Chapter 6 (PDF page 97)
 책을 보면 *rumbl/web/controllers/video_controller.ex* 파일에 아래와 같은 내용이 있을 거라고 되어있습니다.
 {% highlight elixir %}
