@@ -70,7 +70,7 @@ def changeset(model, params \\ %{}) do
 end 
 {% endhighlight %}
 
-Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다.. `:empty`를 사용해도 아직 작동은 하더군요.. 왠지 모르겠지만 책 뒷부분에 나오는 Video와 Category 모델에는 저자들이 `%{}`를 사용했습니다.. 
+Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다. `:empty`를 사용해도 아직 작동은 하더군요. 왠지 모르겠지만 책 뒷부분에 나오는 Video와 Category 모델에는 저자들이 `%{}`를 사용했습니다. 이후 챕터에도 몇 번 보이는데 심각한 문제가 아니기 때문에 재차 언급하지는 않겠습니다.
 
 #### Presenting User Account Links, Chapter 5 (PDF page 86)
 *rumbl/web/templates/layout/app.html.eex* 를 열어보면 아래와 같은 코드가 있을 겁니다.

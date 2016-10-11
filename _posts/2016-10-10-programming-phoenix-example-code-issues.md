@@ -69,7 +69,7 @@ def changeset(model, params \\ %{}) do
 end 
 {% endhighlight %}
 
-`:empty` is replaced by `%{}` in Ecto 2.0. It will still work with `:empty`, though. Strangely, Video and Category models that show up in later chapters use `%{}`. 
+`:empty` is replaced by `%{}` in Ecto 2.0. It will still work with `:empty`, though. Strangely, Video and Category models that show up in later chapters use `%{}`. This one comes up a few more times in the later chapters.
 
 #### Presenting User Account Links, Chapter 5 (PDF page 86)
 Your *rumbl/web/templates/layout/app.html.eex* will initially look like this:
