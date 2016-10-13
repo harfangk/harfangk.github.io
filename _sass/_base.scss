@@ -8,13 +8,44 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
+// Variables
+$main: 18;
+$line: 30;
 
+// Vertical rhythm
+
+@mixin font($size, $height: 1) {
+  font-size: #{$size / $main}em;
+  line-height: #{$line / $size / $height};
+}
+
+@mixin padding($size, $top: 0, $bottom: 0, $lateral: 0) {
+  padding: ($top * $line / $size + em) ($lateral + em) ($bottom * $line / $size + em);
+}
+
+// Main elements
+
+* {
+  padding: 0;
+  margin: 0 auto;
+  font-weight: normal;
+  text-align: justify;
+  -webkit-text-size-adjust: none;
+}
 
 /**
  * Basic styling
  */
 body {
-    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font: #{$main / 16}em / #{$line / $main} "Nanum Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  @media screen and (max-width: 470px) {
+    font-size: 0.875em;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.1875em;
+  }
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -25,8 +56,28 @@ body {
     font-kerning: normal;
 }
 
+.post, .nav ul {
+  max-width: 41em;
 
+  @include padding($main, 0, 0, 1);
+}
 
+h1, h2, hr, .nav, .foot {
+  text-align: center;
+}
+
+p {
+  @include padding($main, 0.5, 0.5);
+}
+
+time {
+  @include padding(19, 2, 1);
+
+  @include font(19);
+
+  font-style: italic;
+  color: #aaa;
+}
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
@@ -66,7 +117,7 @@ figcaption {
  * Lists
  */
 ul, ol {
-    margin-left: $spacing-unit;
+    @include padding($main, 0, 0, 1);
 }
 
 li {
@@ -94,10 +145,6 @@ a {
     color: $brand-color;
     text-decoration: none;
 
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
-
     &:hover {
         color: $text-color;
         text-decoration: underline;
@@ -122,34 +169,87 @@ blockquote {
     }
 }
 
+// Headings
 
+h1 {
+  @include font(26);
 
+  @include padding(50, 1, 1);
+}
+h2 {
+  @include font(25);
+
+  @include padding(25, 1, 1);
+
+  color: #666;
+}
+
+h3 {
+  @include font(21);
+
+  @include padding(21, 1, 0);
+
+  color: #888;
+}
 /**
  * Code formatting
  */
-pre,
 code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
-}
-
-code {
-    padding: 1px 5px;
+  font-family: PT Sans, Calibri, Arial, sans;
+  color: #4D4E53;
+  line-height: 1.5;
+  background: #f5f5f5;
+  border: 3px solid #f5f5f5;
 }
 
 pre {
-    padding: 8px 12px;
-    overflow-x: auto;
+  @include padding($main, 0.5, 0.5, 0.75);
 
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
+  font-family: monospace, monospace;
+  overflow-x: auto;
+  background: #f5f5f5;
+  border-left: 6px solid #eee;
+
+  code {
+    border: none;
+  }
 }
 
+.ge, .gs {
+  color: #93a1a1;
+}
+
+.nb {
+  color: #b58900;
+}
+
+.c, .cm, .c1, .sb {
+  color: #586e75;
+}
+
+.err, .g, .l, .n, .p, .go, .gp, .gt, .ld, .na, .nl, .nn, .nx, .py, .w, .sd, .sh {
+  color: #93a1a1;
+}
+
+.k, .o, .cp, .cs, .gi, .kn, .kp, .ow {
+  color: #859900;
+}
+
+.x, .gh, .gu, .kc, .no, .ni, .ne, .se {
+  color: #cb4b16;
+}
+
+.gd, .m, .s, .mf, .mh, code .mi, code .mo, .sc, .s2, .si, .sx, .s1, .ss, .il {
+  color: #2aa198;
+}
+
+.gr, .kt, .sr {
+  color: #dc322f;
+}
+
+.kd, .kr, .nc, .nd, .nf, .nt, .nv, .bp, .vc, .vg, .vi {
+  color: #268bd2;
+}
 
 
 /**

@@ -11,8 +11,8 @@ title:
   ko: 흰부엉이 보금자리
 email: bonghyun.d.kim@gmail.com
 description:
-  en: On software. Ruby, Ruby on Rails, Swift, Cocoa, etc.
-  ko: 소프트웨어 전반에 대한 개인 블로그. Ruby, Ruby on Rails, Swift, Cocoa 등등.
+  en: On software. Ruby, Swift, Elixir, and so on
+  ko: 소프트웨어 전반에 대한 개인 블로그. Ruby, Swift, Elixir 등등
 index:
   en:
   ko: index_ko.html
@@ -22,6 +22,7 @@ feed:
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://harfangk.github.io" # the base hostname & protocol for your site
 github_username:  harfangk
+twitter_username: harfangk
 
 # Build settings
 markdown: kramdown
