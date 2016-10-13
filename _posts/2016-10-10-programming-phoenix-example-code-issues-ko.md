@@ -6,13 +6,14 @@ title: Programming Phoenix (2016-04-27 출판본)의 문제 있는 예제 코드
 lang: ko
 ---
 
-지금 시점에서 Programming Phoenix 책에 있는 예제 코드를 따라해보면 일부 코드에서 문제가 발생합니다. 에러가 나기도 하고, 테스트를 통과하지 않을 때도 있고, 데프러케이션 경고가 뜨기도 합니다. 해당 책의 Part I에서 문제가 발생하는 예제 코드를 모아보고, 그 해결책을 정리했습니다.
+지금 시점에서 Programming Phoenix 책에 있는 예제 코드를 따라해보면 일부 코드에서 문제가 발생합니다. 에러가 나기도 하고, 테스트를 통과하지 않을 때도 있고, 데프러케이션 경고가 뜨기도 합니다. 책에서 문제가 발생하는 예제 코드를 모아보고, 그 해결책을 정리했습니다.
 
 예제 코드에서 문제가 발생하는 이유는 지금 책이 Phoenix 1.1.x 버전을 바탕으로 쓰였기 때문입니다. 하지만 책에 나온 Phoenix 설치 방법을 따라서
 
 {% highlight bash %}
 $ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new.ez
 {% endhighlight %}
+
 라고 타이핑하면 1.2.x 버전의 최신 Phoenix가 설치됩니다.
 
 예제 코드에 문제가 발생하는 것 자체를 피하고 싶으시면 그냥 아래 커맨드를 사용해서 Phoenix 1.1.6을 설치하시면 됩니다.
@@ -20,9 +21,9 @@ $ mix archive.install https://github.com/phoenixframework/archives/raw//master/
 $ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new-1.1.6.ez
 {% endhighlight %}
 
-하지만 저처럼 최신 버전을 사용하는 것을 선호하신다면 문제가 있을 때마다 이 글을 참고하는게 도움이 될 겁니다. 물론 Phoenix 프레임워크의 변경점을 직접 찾아보시는 편이 배우기에도 더 좋은만큼 스스로 찾아보시는 것을 더 추천합니다. 별로 찾기 어렵지 않거든요.
+하지만 저처럼 최신 버전을 사용하는 것을 선호하신다면 문제를 해결할 때 이 글이 유용할 겁니다. 물론 Phoenix 프레임워크의 변경점을 직접 찾아보시는 편이 배우기에도 더 좋은만큼 스스로 찾아보시는 것을 더 추천합니다.
 
-저자들의 말에 따르면 Phoenix 1.3이 출시되면 그에 맞춰서 책을 개정한다고 하니 그 이후로는 예제 코드 문제가 없어질 것 같습니다.
+저자들의 말에 따르면 Phoenix 1.3이 출시되면 그에 맞춰서 책을 개정한다고 하니 그 이후로는 버전 문제로 인해 예제 코드에서 에러가 발생하지 않게 될 것 같습니다.
 
 #### Building Forms, Chapter 4 (PDF page 60)
 *rumbl/web/models/user.ex*:
@@ -34,7 +35,7 @@ def changeset(model, params \\ :empty) do
 end 
 {% endhighlight %}
 
-위 코드를 아래와 같이 변경해주세요.
+위 코드에서 `cast/4`를 `cast/3` + `validate_required/3`로 바꿔주세요. 
 
 {% highlight elixir %}
 def changeset(model, params \\ :empty) do
@@ -45,7 +46,7 @@ def changeset(model, params \\ :empty) do
 end
 {% endhighlight %}
 
-`cast/4`는 더 이상 사용하지 않고` cast/3` + `validate_required/3`로 대체되었습니다..  
+`cast/4`는 더 이상 사용하지 않습니다.
 [Ecto 문서](https://hexdocs.pm/ecto/Ecto.Changeset.html#cast/4)  
 [Phoenix 문서](https://github.com/phoenixframework/phoenix/issues/1564)
 
@@ -60,7 +61,7 @@ def changeset(model, params \\ :empty) do
 end 
 {% endhighlight %}
 
-위 코드를 아래와 같이 변경해주세요.
+위 코드에서 `changeset/2`에 있는 인자를 변경해주세요.
 
 {% highlight elixir %}
 def changeset(model, params \\ %{}) do 
@@ -70,7 +71,7 @@ def changeset(model, params \\ %{}) do
 end 
 {% endhighlight %}
 
-Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다. `:empty`를 사용해도 아직 작동은 하더군요. 왠지 모르겠지만 책 뒷부분에 나오는 Video와 Category 모델에는 저자들이 `%{}`를 사용했습니다. 이후 챕터에도 몇 번 보이는데 심각한 문제가 아니기 때문에 재차 언급하지는 않겠습니다.
+Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다. `:empty`를 사용해도 아직 작동은 하더군요. 왠지 모르겠지만 나중에 나오는 `Video`와 `Category` 모델에는 저자들이 `%{}`를 사용했습니다. 이후 챕터에도 몇 번 보이는데 심각한 문제가 아니기 때문에 재차 언급하지는 않겠습니다.
 
 #### Presenting User Account Links, Chapter 5 (PDF page 86)
 *rumbl/web/templates/layout/app.html.eex* 를 열어보면 아래와 같은 코드가 있을 겁니다.
@@ -85,7 +86,8 @@ Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다. `:empty`를 사용해
 </header>
 {% endhighlight %}
 
-`div` 대신 `header` 태그를 쓰는 등 책에 나와있는 코드랑은 조금 다릅니다. Phoenix가 업데이트 되면서 자동생성된 코드가 변경된 것 같습니다. 저자는 아래와 같이 바꾸라고 합니다. 
+`div` 대신 `header` 태그를 쓰거나 `ol` 대신 `ul`을 쓰고 다른 클래스를 지정하는 등 책에 나와있는 코드랑은 조금 다릅니다. Phoenix가 업데이트 되면서 자동생성된 코드가 변경된 것 같습니다. 저자는 아래와 같이 파일을 수정하라고 합니다. 
+
 {% highlight html %}
 <div class="header">  <ol class="breadcrumb text-right">    <%= if @current_user do %>      <li><%= @current_user.username %></li>
       <li>        <%= link "Log out", to: session_path(@conn, :delete, @current_user),
@@ -120,11 +122,12 @@ Ecto 2.0부터 `:empty`가 `%{}`로 대체되었습니다. `:empty`를 사용해
 plug :scrub_params, "video" when action in [:create, :update]
 {% endhighlight %}
 
-저 코드는 Ecto 2.0 업데이트 때문에 더 이상 컨트롤러 안에 자동으로 추가되지 않도록 바뀌었습니다. 
+저 코드는 Ecto 2.0 와의 호환성을 위해 더 이상 컨트롤러 안에 자동으로 추가되지 않도록 바뀌었습니다. 
 [Phoenix 문서](https://github.com/phoenixframework/phoenix/issues/1564)
 
 #### Testing Logged-Out Users, Chapter 8 (PDF page 135-137)
-`test "requires user authentication on all actions"`가 실패한다면 저와 비슷한 실수를 해서 그럴 겁니다. *rumbl/web/router.ex* 파일을 확인해보시고, 아래와 같이 되어 있나 살펴보세요.
+`test "requires user authentication on all actions"`가 실패한다면 저와 비슷한 실수를 했을 수도 있습니다. *rumbl/web/router.ex* 파일을 확인해보시고, 아래와 같이 되어 있나 살펴보세요.
+
 {% highlight elixir %}
 scope "/", Rumbl do
   pipe_through :browser # Use the default browser stack
@@ -142,10 +145,10 @@ scope "/manage", Rumbl do
 end
 {% endhighlight %}
 
-`scope "/", Rumbl do … end` 부분에 있는 `resources "videos", VideoController` 줄을 삭제해주세요. Generating Resources, Chapter 6 (PDF page 92-93)에 나온 제너레이터 결과 텍스트를 보시고 저자가 video 리소스를 *rumbl/web/router.ex*에 추가하라고 말한 것이라고 오해해서 발생한 문제입니다.
+`scope "/", Rumbl do … end` 블럭 부분에 있는 `resources "videos", VideoController` 줄을 삭제해주세요. Generating Resources, Chapter 6 (PDF page 92-93)에 나온 제너레이터 결과 텍스트를 잘못 읽고 `resources "/videos", VideoController`를 *rumbl/web/router.ex*에 추가해서 발생한 문제입니다.
 
 #### Testing Side Effect-Fere Model Code, Chapter 8 (PDF page 149-150) 
-In *rumbl/test/models/user_test.exs*
+*rumbl/test/models/user_test.exs*
 
 {% highlight elixir %}
 test "changeset does not accept long usernames" do
@@ -155,7 +158,7 @@ test "changeset does not accept long usernames" do
 end 
 {% endhighlight %}
 
-위 코드를 아래와 같이 변경해주세요.
+assertion 부분 코드를 아래와 같이 바꿔주세요.
 
 {% highlight elixir %}
 test "changeset does not accept long usernames" do
@@ -179,7 +182,7 @@ test "converts unique_constraint on username to error" do
 end 
 {% endhighlight %}
 
-위 코드를 아래와 같이 변경해주세요.
+마지막 assertion 부분 코드를 아래와 같이 변경해주세요.
 
 {% highlight elixir %}
   test "converts unique_constraint on username to error" do
@@ -193,3 +196,60 @@ end
 {% endhighlight %}
 
 `assert/2` 함수가 작동하는 방식이 바뀐 것 같습니다.
+
+#### Isolating Wolfram, Chapter 13 (PDF page 247)
+*rumbrella/apps/info_sys/test/backends/http_client.exs*:
+ 
+{% highlight elixir %}
+defmodule InfoSys.Test.HTTPClient do
+  @wolfram_xml File.read!("test/fixtures/wolfram.xml")
+  def request(url) do
+    url = to_string(url)
+    cond do
+      String.contains?(url, "1+%2B+1") -> {:ok, {[], [], @wolfram_xml}}
+      true -> {:ok, {[], [], "<queryresult></queryresult>"}}
+    end
+  end
+end
+{% endhighlight %}
+
+`cond` 블럭에 있는 첫 번째 매치 케이스를 다음과 같이  바꿔주세요.
+
+{% highlight elixir %}
+defmodule InfoSys.Test.HTTPClient do
+  @wolfram_xml File.read!("test/fixtures/wolfram.xml")
+  def request(url) do
+    url = to_string(url)
+    cond do
+      String.contains?(url, "1%20+%201") -> {:ok, {[], [], @wolfram_xml}}
+      true -> {:ok, {[], [], "<queryresult></queryresult>"}}
+    end
+  end
+end
+{% endhighlight %}
+
+*rumbrella/apps/info_sys/lib/info_sys/wolfram.ex*의 `fetch_xml/1`에 있는 코드처럼 `iex`에서 `URI.encode("1 + 1")`를 호출해보세요. 책에 나온 `"1+%2B+1"`가 아니라 `"1%20+%201"`가 결과로 나옵니다. 이 때문에 `InfoSys.Test.HTTPClient.request/1`에 있는 `cond` 케이스 매치에 실패하는 겁니다.
+	
+
+전 여기서 `wolfram.xml` 스텁 파일을 만들 때도 한 가지 실수를 했습니다. 어쩐지 책에서 스텁 파일이 `</queryresult>`로 끝나지 않아서 의아하게 여겼는데, 알고 보니 책에 나온 내용은 원래 스텁 파일의 앞부분 몇 줄만 나와있는 것이었습니다. 파일 이름을 클릭해서 실제 파일을 확인해보시면 137줄짜리 XML 파일이 나옵니다.
+
+#### Isolating Wolfram, Chapter 13 (PDF page 248)
+*rumbrella/apps/rumbl/test/test_helper.exs*:
+
+{% highlight elixir %}
+Code.require_file "../../info_sys/test/backends/http_client.exs", __DIR__ 
+ExUnit.start 
+	
+Mix.Task.run "ecto.create", ~w(-r Rumbl.Repo --quiet) 
+Mix.Task.run "ecto.migrate", ~w(-r Rumbl.Repo --quiet) 
+Ecto.Adapters.SQL.begin_test_transaction(Rumbl.Repo) 
+{% endhighlight %}
+
+생성된 파일의 내용이 책에 나온 것이랑 조금 다릅니다. 그냥 시키는 대로 `http_client.exs`를 불러오는 경로만 입력해주면 문제 없이 작동합니다.
+
+{% highlight elixir %}
+Code.require_file "../../info_sys/test/backends/http_client.exs", __DIR__
+ExUnit.start
+	
+Ecto.Adapters.SQL.Sandbox.mode(Rumbl.Repo, :manual)
+{% endhighlight %}
