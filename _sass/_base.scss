@@ -62,7 +62,7 @@ body {
   @include padding($main, 0, 0, 1);
 }
 
-h1, h2, hr, .nav, .foot {
+.nav, .foot {
   text-align: center;
 }
 
@@ -172,7 +172,7 @@ blockquote {
 // Headings
 
 h1 {
-  @include font(26);
+  @include font(42);
 
   @include padding(50, 1, 1);
 }

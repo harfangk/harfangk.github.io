@@ -130,13 +130,19 @@
 }
 
 .page-heading {
-    font-size: 20px;
+    @include font(25);
+    text-align: center;
 }
 
 .post-list {
     margin-left: 0;
     list-style: none;
     max-width: 35em; 
+
+    h2 {
+      margin-bottom: 0;
+      @include padding(13, 0.1, 0.1)
+    }
 }
 
 .post-meta {
@@ -159,10 +165,6 @@
 }
 
 .post-title {
-    font-size: 42px;
-    letter-spacing: -1px;
-    line-height: 1;
-
     @include media-query($on-laptop) {
         font-size: 36px;
     }
