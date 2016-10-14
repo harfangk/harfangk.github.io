@@ -24,7 +24,7 @@ url: "http://harfangk.github.io" # the base hostname & protocol for your site
 github_username:  harfangk
 twitter_username: harfangk
 
-paginate: 5
+paginate: 10
 
 # Build settings
 markdown: kramdown

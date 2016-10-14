@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: 0;
 }
 
 
@@ -172,16 +172,18 @@ blockquote {
 // Headings
 
 h1 {
-  @include font(42);
+  @include font(26);
 
   @include padding(50, 1, 1);
+  color: #d31a1a;
 }
+
 h2 {
   @include font(25);
 
   @include padding(25, 1, 1);
 
-  color: #666;
+  color: #d31a1a;
 }
 
 h3 {
@@ -189,7 +191,7 @@ h3 {
 
   @include padding(21, 1, 0);
 
-  color: #888;
+  color: #d31a1a;
 }
 /**
  * Code formatting
