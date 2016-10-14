@@ -175,7 +175,7 @@ h1 {
   @include font(26);
 
   @include padding(50, 1, 1);
-  color: #d31a1a;
+  color: $heading-color;
 }
 
 h2 {
@@ -183,7 +183,7 @@ h2 {
 
   @include padding(25, 1, 1);
 
-  color: #d31a1a;
+  color: $heading-color;
 }
 
 h3 {
@@ -191,7 +191,7 @@ h3 {
 
   @include padding(21, 1, 0);
 
-  color: #d31a1a;
+  color: $heading-color;
 }
 /**
  * Code formatting
