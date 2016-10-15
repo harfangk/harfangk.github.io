@@ -2,29 +2,22 @@
 layout: post
 ref: programming-phoenix-example-code-issues
 date:   2016-10-10 00:00:00 +0900
-title: Resolving Issues with Example Code in Programming Phoenix (Published on 2016-04-27)
+title: Resolving Issues with Example Code in Programming Phoenix
 lang: en
 ---
 
 If you follow the code examples in Programming Phoenix book now, there are several broken ones that will cause error, fail to pass test, or show deprecation warning. I documented such codes from the book and how to resolve them.
 
-Those codes break because the book is written for Phoenix 1.1.x. But if you follow the installation instruction and type  
-
-{% highlight bash %}
-$ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new.ez
-{% endhighlight %}
-as shown in the book, it will install the most recent version of Phoenix like 1.2.x.  
+Those codes break because your installed Phoenix version and the one used in the book is different. The book uses 1.1.x, but if you follow the installation instruction, it will install the most recent version of Phoenix like 1.2.x.  
 
 If you do not want to deal with this issue at all, install Phoenix 1.1.6 with this command.
 {% highlight bash %}
 $ mix archive.install https://github.com/phoenixframework/archives/raw//master/phoenix_new-1.1.6.ez
 {% endhighlight %}
 
-If you want to stick to the latest version like I did, this post could be useful. But I still recommend trying to look up the changes in Phoenix yourself instead of just looking at this post, because you learn more that way. Also, it's more fun.
-
 The authors of the book plan to update the book when Phoenix 1.3 is released, which will fix these broken examples for good.
 
-#### Building Forms, Chapter 4 (PDF page 60)
+### Building Forms, Chapter 4 (PDF page 60)
 In *rumbl/web/models/user.ex*:
 {% highlight elixir %}
 def changeset(model, params \\ :empty) do 
@@ -34,7 +27,7 @@ def changeset(model, params \\ :empty) do
 end 
 {% endhighlight %}
 
-Replace `cast/4` with `cast/3` + `validate_required/3`. Change it to
+Replace `cast/4` with `cast/3` + `validate_required/3`. Change it to:
 
 {% highlight elixir %}
 def changeset(model, params \\ :empty) do
@@ -45,11 +38,11 @@ def changeset(model, params \\ :empty) do
 end
 {% endhighlight %}
 
-`cast/4` is deprecated.
+`cast/4` is deprecated.  
 [Ecto docs](https://hexdocs.pm/ecto/Ecto.Changeset.html#cast/4)  
 [Phoenix docs](https://github.com/phoenixframework/phoenix/issues/1564)
 
-#### Building Forms, Chapter 4 (PDF page 60-61)
+### Building Forms, Chapter 4 (PDF page 60-61)
 In *rumbl/web/models/user.ex*:
 
 {% highlight elixir %}
@@ -72,9 +65,9 @@ end
 
 `:empty` is replaced by `%{}` in Ecto 2.0. It will still work with `:empty`, though. Strangely, `Video` and `Category` models that show up in later chapters use `%{}`. This one comes up a few more times in the later chapters.
 
-#### Presenting User Account Links, Chapter 5 (PDF page 86)
+### Presenting User Account Links, Chapter 5 (PDF page 86)
 Your *rumbl/web/templates/layout/app.html.eex* will initially look like this:
-{% highlight html %}
+{% highlight erb %}
 <header class="header">
   <nav role="navigation">
     <ul class="nav nav-pills pull-right">
@@ -87,7 +80,7 @@ Your *rumbl/web/templates/layout/app.html.eex* will initially look like this:
 
 This is slightly different from what is expected in the book. For example, it uses `header` tag instead of `div` tag, and `ul` instead of `ol` with different class. The authors instruct us to change it like this.
 
-{% highlight html %}
+{% highlight erb %}
 <div class="header">  <ol class="breadcrumb text-right">    <%= if @current_user do %>      <li><%= @current_user.username %></li>
       <li>        <%= link "Log out", to: session_path(@conn, :delete, @current_user),
          method: "delete" %>      </li>    <% else %>      <li><%= link "Register", to: user_path(@conn, :new) %></li> 
@@ -97,7 +90,7 @@ This is slightly different from what is expected in the book. For example, it us
 
 This is what I did. The rendered page looks slightly different, but it works fine.
 
-{% highlight html %}
+{% highlight erb %}
 <header class="header">
   <nav role="navigation">
     <ul class="nav nav-pills pull-right">
@@ -115,7 +108,7 @@ This is what I did. The rendered page looks slightly different, but it works fin
 </header>
 {% endhighlight %}
 
-#### Examining the Generated Controller and View, Chapter 6 (PDF page 97)
+### Examining the Generated Controller and View, Chapter 6 (PDF page 97)
 The book mentions that in *rumbl/web/controllers/video_controller.ex*, there should be this line:
 
 {% highlight elixir %}
@@ -125,7 +118,7 @@ plug :scrub_params, "video" when action in [:create, :update]
 That line is no longer automatically included in the controller because of compatibility with Ecto 2.0 update.  
 [Phoenix docs](https://github.com/phoenixframework/phoenix/issues/1564)
 
-#### Testing Logged-Out Users, Chapter 8 (PDF page 135-137)
+### Testing Logged-Out Users, Chapter 8 (PDF page 135-137)
 If `test "requires user authentication on all actions"` fails, it's likely that you made a similar mistake as I did. Check your *rumbl/web/router.ex* and see if it look like this.
 {% highlight elixir %}
 scope "/", Rumbl do
@@ -146,7 +139,7 @@ end
 
 Delete the line `resources "videos", VideoController` in `scope "/", Rumbl do … end` block. You probably misread the output result of resource generation in Generating Resources, Chapter 6 (PDF page 92-93) and understood it as an instruction to add `resources "/videos", VideoController` to *rumbl/web/router.ex*.
 
-#### Testing Side Effect-Fere Model Code, Chapter 8 (PDF page 149-150) 
+### Testing Side Effect-Fere Model Code, Chapter 8 (PDF page 149-150) 
 In *rumbl/test/models/user_test.exs*
 
 {% highlight elixir %}
@@ -169,7 +162,7 @@ end
 
 This issue is caused by changes to the definition of `errors_on/2` in *rumbl/test/support/model_case.ex*.
 	
-#### Testing Code with Side Effects, Chapter 8 (PDF page 152)
+### Testing Code with Side Effects, Chapter 8 (PDF page 152)
 In *rumbl/test/models/user_repo_test.exs*
 {% highlight elixir %}
 test "converts unique_constraint on username to error" do 
@@ -197,7 +190,7 @@ test "converts unique_constraint on username to error" do
 
 I think it's because of how `assert/2` works. 
 
-#### Isolating Wolfram, Chapter 13 (PDF page 247)
+### Isolating Wolfram, Chapter 13 (PDF page 247)
 In *rumbrella/apps/info_sys/test/backends/http_client.exs*:
  
 {% highlight elixir %}
@@ -232,7 +225,7 @@ Try `URI.encode("1 + 1")` in `iex`, just like it's called in `fetch_xml/1` in *r
 	
 I made another mistake here when creating the stub `wolfram.xml` . I thought it was weird that the stub did not end with `</queryresult>` tag. Well, it turned out that what you can see in the book was only the first several lines of the actual stub file. Click the link on the file name to get the entire xml file that's 137 lines long.
 
-#### Isolating Wolfram, Chapter 13 (PDF page 248)
+### Isolating Wolfram, Chapter 13 (PDF page 248)
 In *rumbrella/apps/rumbl/test/test_helper.exs*:
 {% highlight elixir %}
 Code.require_file "../../info_sys/test/backends/http_client.exs", __DIR__ 
