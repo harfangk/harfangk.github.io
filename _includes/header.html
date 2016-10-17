@@ -14,7 +14,7 @@
         {% endfor %}
         
         {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
-        {% if posts.size > 1 %}
+        {% if posts.size > 0 %}
           {% for post in posts %} <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a> {% endfor %}
         {% else %}
           {% for lang in layout.langs %} <a href="{{ site.baseurl }}/{{ site.index[lang] }}">{{ lang }}</a> {% endfor %}

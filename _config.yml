@@ -9,13 +9,16 @@
 title:
   en: Harfang's Perch
   ko: Harfang's Perch
+  de: Harfang's Perch
 email: bonghyun.d.kim@gmail.com
 description:
   en: On software in general, with focus on Ruby, Swift, Elixir
   ko: 소프트웨어 전반에 대한 개인 블로그. Ruby, Swift, Elixir 
+  de: Übungen am schriftlichen Deutsch
 index:
   en:
   ko: index_ko.html
+  de: index_de.html
 feed:
   en: /feed.xml
   ko: /feed_ko.xml
