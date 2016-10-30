@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: zusammenfassung-boom-und-blase
-date:   2016-10-18 00:00:00 +0900
+date:   2016-10-27 00:00:00 +0900
 title: Zusammenfassung von „Boom und Blase”
 lang: de
 ---
