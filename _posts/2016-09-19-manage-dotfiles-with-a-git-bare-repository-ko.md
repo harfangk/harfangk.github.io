@@ -16,44 +16,44 @@ lang: ko
 
 깃만 있으면 되고, 명령 네 줄만 입력하면 끝납니다.
 
-{% highlight bash linenos %}
-git init --bare $HOME/.config
-echo "alias config='/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME'" >> $HOME/.zshrc
-reload ~/.zshrc
-config config --local status.showUntrackedFiles no
+{% highlight bash %}
+git init --bare $HOME/.dotfiles
+echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+source ~/.zshrc
+dotfiles config --local status.showUntrackedFiles no
 {% endhighlight %}
 
-1. ~/.config 에 bare git repository 를 생성하고
-2. 쉘 설정 파일에 앨리어싱 설정을 넣어줍니다. 저는 zsh 를 사용해서 .zshrc 지만 bash 사용자는 .bashrc 겠죠? --git-dir 와 --work-tree 패스를 눈여겨보세요. 
+1. `~/.dotfiles` 에 bare git repository 를 생성하고
+2. 쉘 설정 파일에 앨리어싱 설정을 넣어줍니다. 저는 zsh 를 사용해서 `.zshrc` 지만 bash 사용자는 `.bashrc` 겠죠? --git-dir 와 --work-tree 패스를 눈여겨보세요. 
 3. 설정 파일 적용을 위해 리로딩 해줍니다.
-4. status 커맨드를 입력했을 때 트랙하도록 설정하지 않은 파일이 보이지 않도록 해줍니다.
+4. `dotfiles status` 커맨드를 입력했을 때 트랙하도록 설정하지 않은 파일이 보이지 않도록 해줍니다.
 
 이제 홈 디렉토리에서 앨리어싱 해둔 커맨드를 사용해서 파일을 관리하고, 필요하면 리모트 리포를 설정해서 사용하면 됩니다.
 
-{% highlight bash linenos %}
-config status
-config add .vimrc
-config commit -m "Add vimrc"
-config remote add origin https://www.github.com/username/repo.git
-config push origin master
+{% highlight bash %}
+dotfiles status
+dotfiles add .vimrc
+dotfiles commit -m "Add vimrc"
+dotfiles remote add origin https://www.github.com/username/repo.git
+dotfiles push origin master
 {% endhighlight %}
 
 ### 다른 시스템에 닷파일 가져오기
 
 리모트 리포에서 파일을 가져오기 전에 쉘 커맨드 두 줄만 입력하면 됩니다.
 
-{% highlight bash linenos %}
-echo "alias config='/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME'" >> $HOME/.zshrc
-reload ~/.zshrc
-echo ".config" >> .gitignore
-git clone --bare https://www.github.com/username/repo.git $HOME/.config
-config checkout
-config config --local status.showUntrackedFiles no
+{% highlight bash %}
+echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+source ~/.zshrc
+echo ".dotfiles" >> .gitignore
+git clone --bare https://www.github.com/username/repo.git $HOME/.dotfiles
+dotfiles checkout
+dotfiles config --local status.showUntrackedFiles no
 {% endhighlight %}
 
 1. Git bare repository 가 문제없이 동작하도록 앨리어스를 설정해줍니다.
 2. 설정 파일 적용을 위해 리로드.
-3. .gitignore 에 .config 디렉토리를 추가해줍니다. 리커젼 문제를 방지하기 위해서입니다.
+3. `.gitignore` 에 `.dotfiles` 디렉토리를 추가해줍니다. 리커젼 문제를 방지하기 위해서입니다.
 4. 리모트 리포 클론.
 5. 제대로 가져왔는지 확인하고,
 6. 마찬가지로 트랙하도록 설정해두지 않은 파일이 status 커맨드 결과에 보이지 않도록 해줍니다.
