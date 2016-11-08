@@ -68,7 +68,7 @@ defmodule XorLists do
   defp _xor_lists([h1|t1], [h2|t2], acc), do: _xor_lists(t1, t2, [acc|h1 ^^^ h2])
 end
 
-list_ct = for<<a::8 <- ct >>, do: a
+list_ct = for<<a::bytes-size(1) <- ct >>, do: a
 [116, 39, 169, 154, 78, 122, 69, 104, 58]
 list_pt = String.to_charlist(pt)
 'menagerie'
