@@ -6,7 +6,7 @@ title: Elixir as First Programming Language (Part 1)
 lang: en
 ---
 
-This post is adapted from my talk at Seoul Elixir Meetup on November 16, 2016. 
+*This post is adapted from my talk at Seoul Elixir Meetup on November 16, 2016.*
 
 Elixir might not be the first language that comes to your mind when you think about which programming language to teach to beginners. Languages like Python, Ruby, JavaScript, C/C++, or Java are more popular choices. But I think Elixir has some unique advantages that makes it a serious candidate.
 
