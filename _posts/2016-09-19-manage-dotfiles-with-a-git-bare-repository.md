@@ -17,13 +17,13 @@ And then I found what I was looking for. This method uses a <a href="http://www.
 Git is the only dependency. The following four lines will set up the bare repository.
 
 {% highlight bash %}
-git init --bare $HOME/.dotfiles
-echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+git init --bare $HOME/.dotfiles.git
+echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"' >> $HOME/.zshrc
 source ~/.zshrc
 dotfiles config --local status.showUntrackedFiles no
 {% endhighlight %}
 
-1. Create a git bare repository at `~/.dotfiles` to track files.
+1. Create a git bare repository at `~/.dotfiles.git` to track files.
 2. Add alias setting to shell configuration file. I use zsh so it's `.zshrc`. For bash, it'd be `.bashrc`. Note how the paths for git directory and working tree are set.
 3. Reload the shell setting.
 4. Prevent untracked files from showing up when we call `dotfiles status`.
@@ -43,19 +43,20 @@ dotfiles push origin master
 It just needs two shell commands before fetching the remote repo.
 
 {% highlight bash %}
-echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"' >> $HOME/.zshrc
 source ~/.zshrc
-echo ".dotfiles" >> .gitignore
-git clone --bare https://www.github.com/username/repo.git $HOME/.dotfiles
+echo ".dotfiles.git" >> .gitignore
+git clone --bare https://www.github.com/username/repo.git $HOME/.dotfiles.git
 dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 {% endhighlight %}
 
 1. Create alias to ensure that the git bare repository works without problem.
 2. Reload the shell setting to use that alias.
-3. Add `.dotfiles` directory to `.gitignore` to prevent recursion issues.
+3. Add `.dotfiles.git` directory to `.gitignore` to prevent recursion issues.
 4. Clone the repo.
 5. Check if it works fine.
-6. Prevent untracked files from showing up on `dotfiles status`.
+6. If you already have configuration files with identical names, checkout will fail. Back up and remove those files. Skip back up if you don't need them.
+7. Prevent untracked files from showing up on `dotfiles status`.
 
 That's about it! Credit goes to anonymous giants in the Internet for coming up with this, and Nicola Paolucci for elegantly documenting the steps. Here's the <a href="https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/">link</a> to his original post.
