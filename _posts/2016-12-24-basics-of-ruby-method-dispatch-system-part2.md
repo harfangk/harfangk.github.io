@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: basics-of-ruby-method-dispatch-system-part2
-date:   2016-12-12 00:00:00 +0900
+date:   2016-12-23 00:00:00 +0900
 title: Basics of Ruby Method Dispatch System (Part 2)
 lang: en
 ---
@@ -13,7 +13,7 @@ The post is in two parts. The first part covers what you need to know about typi
 The second part digs into tools that are used less often. It covers: singleton method, singleton class, and class methods.
 
 ## Overview
-My previous post discussed how instance methods get called. Here I will talk about singleton methods. 
+My previous post discussed how instance methods get called. Here I will talk about singleton methods and class methods. 
 
 It would be helpful to think about the meaning of singleton before going through this post. In computer science, the term singleton is usually used to mean singleton pattern, which describes a design pattern that restricts a class to instantiate only one object. 
 
@@ -44,29 +44,29 @@ Here we defined a `BasicClass` that has `basic_class_instance_method` as its ins
 Then we defined `singleton_method_of_a` to `basic_class_instance_a`. Let's see if those methods are defined as we intended.
 
 {% highlight ruby %}
-basic_class_instance_a.method(:basic_class_instance_method)
-=> #<Method: BasicClass#basic_class_instance_method>
+basic_class_instance_a.method(:basic_class_instance_method).owner
+=> BasicClass
 
-basic_class_instance_b.method(:basic_class_instance_method)
-=> #<Method: BasicClass#basic_class_instance_method>
+basic_class_instance_b.method(:basic_class_instance_method).owner
+=> BasicClass
 
-basic_class_instance_a.method(:singleton_method_of_a)
-=> #<Method: #<BasicClass:0x007fb5a2002760>.singleton_method_of_a>
+basic_class_instance_a.method(:singleton_method_of_a).onwer
+=> #<Class:BasicClass>
 
-basic_class_instance_b.method(:singleton_method_of_a)
+basic_class_instance_b.method(:singleton_method_of_a).owner
 NameError: undefined method `singleton_method_of_a' for class `BasicClass'
 {% endhighlight %}
 
-`basic_class_instance_method` is defined in `BasicClass` and can be called from both instances. `singleton_method_of_a`, however, can be called only from `basic_class_instance_a` and not from `basic_class_instance_b`. We successfully created a singleton method to an object.
+`basic_class_instance_method` is defined in `BasicClass` and can be called from both instances. `singleton_method_of_a`, however, is defined in something called `#<Class:BasicClass>` and can be called only from `basic_class_instance_a` and not from `basic_class_instance_b`. We successfully created a singleton method to an object.
 
-Ruby enables this behavior through an implementation that goes by many different names, among which `singleton class`, `eigenclass`, `metaclass` are most recognized. But they all refer to the same implementation. The official term is `singleton class` so I will stick to it.
+Ruby enables this behavior through an implementation called `singleton class`. It is also called `eigenclass` and `metaclass`, but the official term is `singleton class` so I will stick to it. And yes, `#<Class:BasicClass>` is a singleton class.
 
-Let's dive into singleton class then.
+Let's dive into singleton class.
 
 ## Level 4: Singleton class
 In the previous section, we called `define_singleton_method` on `basic_class_instance_a` and defined `singleton_method_of_a`.
 
-Since the method is unique to `basic_class_instance_a`, it cannot be defined in `BasicClass`. It could be defined in the object itself, but that's not how Ruby does it. The method is actually defined in the singleton class of `basic_class_instance_a`. But then what is a singleton class? 
+Since the method is unique to `basic_class_instance_a`, it cannot be defined in `BasicClass`. It could be defined in the object itself, but that's not how Ruby does it. The method is actually defined in the singleton class of `basic_class_instance_a`. But then what is a singleton class and how can we see it?
 
 Let's think about how an object is instantiated. The `initialize` method defined in a class is called, and a new object of that class is instantiated, right?
 
@@ -97,6 +97,8 @@ basic_class_instance_a.singleton_class
 basic_class_instance_b.singleton_class
 => #<BasicClass:0x007fb5a1890720>
 {% endhighlight %}
+
+`class` and `singleton_class` methods are defined in `Object` of Ruby core library, and respectively return the class and singleton class of the object.
 
 `#<BasicClass:0x007fb5a2002760>` and `#<BasicClass:0x007fb5a1890720>` are Ruby interpreter's references to the singleton classes of `basic_class_instance_a` and `basic_class_instance_b`. As you can see, they are different from `BasicClass`.
 
@@ -199,11 +201,7 @@ Here we see once again that Ruby class methods are actually special names we giv
 
 You might still have hard time understanding this. The key is to understand that class is just another object. It does have a special capability to function as a template to construct other objects, but it is still an object. It shares characteristics common to other objects, and having singleton class and singleton method are a few of those shared characteristics. Once you wrap your head around that concept, this implementation detail of Ruby would not feel so alien.
 
-## Level 6: Inheritance of singleton class
-When a class inherits from another class, their singleton classes also inherit from each other.
-
-Let's look at the code.
-
+## Level 6: Method dispatch of class methods
 {% highlight ruby %}
 module BasicModule 
   def self.basic_module_module_method_a
@@ -235,7 +233,7 @@ basic_class_instance_a = BasicClass.new
 
 Here we have `BasicModule`, `SuperClass`, and `BasicClass`. `BasicClass` inherits from `SuperClass` and includes `BasicModule`. 
 
-Let's check the ancestors hierarchy of `BasicClass`.
+Let's check the ancestors hierarchy of `BasicClass` and its singleton class.
 
 {% highlight ruby %}
 BasicClass.ancestors
@@ -249,22 +247,25 @@ BasicClass.singleton_class.class
 => Class
 {% endhighlight %}
 
-The ancestors hierarchy of `BasicClass` is as expected. Its singleton has more interesting ancestors. 
+The ancestors hierarchy of `BasicClass` is as expected. Its singleton class has more interesting ancestors. 
 
 From here, we can observe the following:
 
-* Singleton classes inherit from their singleton superclasses
-* Singleton classes are instances of `Class` in Ruby core
-* All singleton classes inherit from `Class`
-* Singleton classes of modules are not part of the ancestors hiarchy. Only the singleton classes of class are inherited
+* Singleton classes inherit from their singleton superclasses.
+* Singleton classes are instances of `Class` in Ruby core.
+* All singleton classes inherit from `Class`.
+* Singleton classes of modules are not part of the ancestors hiarchy. Only the singleton classes of class are inherited.
 
-First three observations are interesting to know. They explain how class methods of superclass are inherited to subclasses.
+First three observations are interesting to know. They explain how class methods of superclass are inherited to subclasses. 
 
-Last observation is more important for actual Ruby programming. It tells that module methods are not inherited and can only be called directly from the module itself.
+Just like Ruby interpreter iterates through ancestors hierarchy of class to dispatch instance methods, it iterates through ancestors hierarchy of singleton class to dispatch class methods.
 
-The relationship between `Module` and `Class` is another interesting topic, but it's beyond the scope of this article.
+Last observation is quite important for actual Ruby programming. It tells that module methods are not inherited and can only be called directly from the module itself. 
+
+Comparing `Module` and `Class` is another interesting topic, but it's beyond the scope of this article.
 
 ## Bonus material
+
 ### Instance methods and class methods are two sides of the same coin
 
 {% highlight ruby %}
@@ -291,10 +292,10 @@ Let's look at the next pair then. `BasicClass` is an instance of `BasicClass.sin
 
 Since `BasicClass` is a class, we give its methods a special name: class methods. So class methods of `BasicClass` are instance methods of its singleton class. 
 
-This does not have much practical use, but is a thought-provoking example about recursive nature of object-oriented programming. 
+This concept has little direct use in code, but is a thought-provoking example about recursive nature of object-oriented programming. 
 
 ### Other ways to access singleton class
-There are three commonly used way to access and modify singleton classes. Let's go over what they are.
+There are three commonly used ways to access and modify singleton classes. Let's go over what they are.
 
 {% highlight ruby %}
 class BasicClass
@@ -338,6 +339,6 @@ Third one calls `extend` from `Object` in Ruby core, which adds all instance met
 
 ## Epilogue
 
-Thank you for patiently reading through this lengthy article. In part 2, we talked about singleton method, singleton class, class method, and ancestors hierarchy of singleton classes. 
+Thank you for patiently reading through this lengthy article. In part 2, we talked about singleton method, singleton class, class method, ancestors hierarchy of singleton classes, and the method dispatching of class methods. 
 
 You don't really need to directly use the concepts we've explored here unless you want to do metaprogramming, but it's still an interesting subject. I hope it helped you understand the inner workings of Ruby more.
