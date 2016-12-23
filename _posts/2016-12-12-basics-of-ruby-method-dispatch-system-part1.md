@@ -8,7 +8,9 @@ lang: en
 
 In this post, I will explain the basics of how a method call works in Ruby. I'll assume that readers have some familiarity with Ruby language. 
 
-The post is in two parts. The first part will cover what you need to know about typical Ruby program, whereas the second part will dig into tools that are used less often.
+The post is in two parts. The first part covers what you need to know about typical Ruby program. It covers: ancestors hierarchy, class inheritance, and module `include` and `prepend`. 
+
+The second part digs into tools that are used less often. It covers: singleton method, singleton class, and class methods.
 
 ## Overview
 The key concept to understand is an object's **ancestors**. An object's ancestors include all classes and modules that it inherits from. 

@@ -8,7 +8,9 @@ lang: ko
 
 이 글에서는 루비에서 메서드를 호출했을 때, 루비가 어떤 식으로 이를 처리하는지를 살펴보도록 하겠습니다. 루비 언어를 어느 정도 사용할 줄 안다고 가정합니다.
 
-두 개의 글로 나누어서 구성했는데 첫 번째 글에서는 일반적인 루비 프로그램에서 알아야 될 내용을 다루고, 두 번째 글에서는더 드물게 사용되는 기능을 살펴봅니다.
+두 개의 글로 나누어서 구성했는데 첫 번째 글에서는 일반적인 루비 프로그램에서 알아야 될 내용을 다루는데, 구체적으로는 조상 목록, 클래스 상속, 모듈 `include` 및 `prepend` 등입니다.
+
+두 번째 글에서는 더 드물게 사용되는 기능을 살펴보는데 싱글턴 메서드, 싱글턴 클래스, 클래스 메서드 등을 다룹니다.
 
 ## 개요
 메서드 디스패치 시스템에서 가장 핵심적인 부분은 객체의 조상입니다. 여기서 객체의 조상이란 해당 객체가 상속을 받는 모든 클래스와 모듈을 말합니다.
@@ -54,8 +56,6 @@ BasicClass.class
 `class` 메서드는 루비 스탠다드 라이브러리의 `Class`에 정의되어 있는 메서드인데, 어떤 객체에 이를 호출하면 그 객체의 클래스를 반환합니다. 코드에 나와 있듯이 `basic_class_instance`는 `BasicClass`의 인스턴스입니다. 생각대로입니다.
 
 하지만 흥미롭게도 `BasicClass`가 `Class`의 인스턴스라는 것도 볼 수 있습니다. 루비에서 프로그래머가 정의하는 모든 클래스는 `Class` 클래스의 인스턴스입니다.
-
-In Ruby, everything is an object, which can mean a lot of different things. But for this particular aspect, let's just think about how an object is constructed. In most OOP languages, an object is constructed as an instance of a class. But everything, including class, is an object in Ruby. So a class that you defined is constructed as an instance of a class called `Class`. If this concept is new to you, take some time to think about it. There's a bit of recursive thinking here.
 
 루비에서는 모든 것이 객체입니다. 이는 여러 가지 의미를 가질 수 있는데, 여기서는 객체가 생성되는 부분에 대해서만 생각해 봅시다. 대부분의 객체지향 언어에서 객체는 클래스의 인스턴스로서 생성됩니다. 하지만 루비에서는 모든 것이 객체라고 앞서 말했으며, 클래스도 예외가 아닙니다. 즉, 프로그래머가 정의한 클래스는 사실 `Class` 클래스의 인스턴스로서 생성되는 것이죠. 재귀적인 방식이니 처음 접하는 개념이라면 한 번 시간을 들여 생각해보면 좋습니다.
 
