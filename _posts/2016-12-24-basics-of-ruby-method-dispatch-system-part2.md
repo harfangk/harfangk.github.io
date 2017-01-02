@@ -139,7 +139,7 @@ basic_class_instance_a.singleton_methods
 => [:singleton_method_of_a]
 {% endhighlight %}
 
-It tells that `basic_class_instance_method` is defined within `BasicClass`, but `singleton_class_of_a` is defined in `#<BasicClass:0x007fb5a2002760>`. Note that the notation is slightly different, too. For singleton class, `#` is prepended, and `.` is used instead of `#` for the method. 
+It tells that `basic_class_instance_method` is defined within `BasicClass`, but `singleton_method_of_a` is defined in `#<BasicClass:0x007fb5a2002760>`. Note that the notation is slightly different, too. For singleton class, `#` is prepended, and `.` is used instead of `#` for the method. 
 
 `singleton_methods` method is defined in `Object` and returns the array of singleton methods of that object.
 

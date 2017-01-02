@@ -139,7 +139,7 @@ basic_class_instance_a.singleton_methods
 => [:singleton_method_of_a]
 {% endhighlight %}
 
-`basic_class_instance_method`는 `BasicClass`에 정의되어 있고, `singleton_class_of_a`는 `#<BasicClass:0x007fb5a2002760>`에 정의되어 있다고 나옵니다. 표기법이 살짝 다른 것도 확인할 수 있습니다. 싱글턴 클래스에는 `#`가 앞에 붙어있고, 메서드 표시에는 `#` 대신 `.`가 사용됩니다.
+`basic_class_instance_method`는 `BasicClass`에 정의되어 있고, `singleton_method_of_a`는 `#<BasicClass:0x007fb5a2002760>`에 정의되어 있다고 나옵니다. 표기법이 살짝 다른 것도 확인할 수 있습니다. 싱글턴 클래스에는 `#`가 앞에 붙어있고, 메서드 표시에는 `#` 대신 `.`가 사용됩니다.
 
 `singleton_methods`메서드는 루비 코어 라이브러리의 `Object`에 정의되어 있으며 해당 객체의 싱글턴 메서드를 어레이로 반환합니다.
 
@@ -263,6 +263,7 @@ BasicClass.singleton_class.class
 `Module`과 `Class`를 비교하는 것도 흥미로운 주제이기는 하나 이 글에서 다루는 범위 밖입니다.
 
 ## 보너스
+
 ### 인스턴스 메서드와 클래스 메서드는 같은 메서드를 다르게 부르는 것 뿐이다
 
 {% highlight ruby %}
