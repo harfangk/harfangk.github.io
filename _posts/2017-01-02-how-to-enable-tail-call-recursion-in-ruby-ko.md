@@ -22,9 +22,9 @@ TCO가 최적화하는 대상이 콜 스택의 크기이니 콜 스택에 대해
 
 콜 스택에 대한 설명은 간략히 이 정도로 정리하겠습니다.
 
-이제 꼬리 호출이 무엇인지 살펴봅시다. 꼬리 호출은 프로시져가 종료되기 직전에 호출한 마지막 서브루틴을 말합니다. 종료되기 직전에 마지막으로 호출했다는 것은 프로시져의 스택 프레임에서 꼬리 호출 이전에 사용된 부분이 이제 필요 없으며 꼬리 호출에 사용된 새로운 스택 프레임으로 대체해도 큰 상관이 없다는 것을 의미합니다. 이렇게 스택 프레임을 대체하면 메모리와 CPU를 더 효율적으로 사용할 수 있게 됩니다. 새로운 스택 프레임을 만드는 대신 이렇게 기존 스택 프레임을 대체하는 것을 *꼬리 호출 제거*(tail call elimination)이라고 부릅니다. 그리고 꼬리 호출 제거를 하는 프로그램이 *꼬리 호출 최적화*를 한다고 표현합니다. 
+이제 꼬리 호출이 무엇인지 살펴봅시다. 꼬리 호출은 프로시져가 종료되기 직전에 호출한 마지막 서브루틴을 말합니다. 종료되기 직전에 마지막으로 호출했다는 것은 프로시져의 스택 프레임에서 꼬리 호출 이전에 사용된 부분은 이제 필요가 없어졌으며, 꼬리 호출에 사용된 새로운 스택 프레임으로 대체해도 큰 상관이 없다는 것을 의미합니다. 이렇게 기존 스택 프레임을 대체하면 메모리와 CPU를 더 효율적으로 사용할 수 있게 됩니다. 새로운 스택 프레임을 만드는 대신 이렇게 기존 스택 프레임을 대체하는 것을 *꼬리 호출 제거*(tail call elimination)이라고 부릅니다. 그리고 꼬리 호출 제거를 하는 프로그램이 *꼬리 호출 최적화*를 한다고 표현합니다. 
 
-재귀가 아닌 프로시져의 경우, 사용하는 공간이나 시간을 TCO가 크게 줄여주지는 않기 때문에  그리 중요하지 않습니다. 하지만 재귀적인 프로시져의 경우 TCO가 프로그램의 동작 여부를 좌우하는 수준이기에 매우 중요합니다.
+재귀가 아닌 프로시져의 경우, 사용하는 공간이나 시간을 TCO가 크게 줄여주지는 않기 때문에  그리 중요하지 않습니다. 하지만 재귀적인 프로시져의 경우 TCO는 프로그램의 동작 여부를 좌우하는 수준이며 매우 중요합니다.
 
 ## 재귀에는 왜 TCO가 중요한가?
 
@@ -68,7 +68,7 @@ puts Fact.iterator(100000).to_f
 
 puts 'Non-tail-recursive result'
 => Tail-recursive result
-puts Fact.non_tail_recursive(100000)
+puts Fact.non_tail_recursive(100000).to_f
 => fact.rb:6:in `non_tail_recursive': stack level too deep (SystemStackError) `
 
 puts 'Tail-recursive result'
@@ -158,7 +158,7 @@ puts Fact.iterator(100000).to_f
 
 puts 'Non-tail-recursive result'
 => Tail-recursive result
-puts Fact.non_tail_recursive(100000)
+puts Fact.non_tail_recursive(100000).to_f
 => fact.rb:6:in `non_tail_recursive': stack level too deep (SystemStackError) `
 
 puts 'Tail-recursive result'

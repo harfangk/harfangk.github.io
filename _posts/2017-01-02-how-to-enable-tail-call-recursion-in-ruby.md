@@ -70,7 +70,7 @@ puts Fact.iterator(100000).to_f
 
 puts 'Non-tail-recursive result'
 => Tail-recursive result
-puts Fact.non_tail_recursive(100000)
+puts Fact.non_tail_recursive(100000).to_f
 => fact.rb:6:in `non_tail_recursive': stack level too deep (SystemStackError) `
 
 puts 'Tail-recursive result'
@@ -160,7 +160,7 @@ puts Fact.iterator(100000).to_f
 
 puts 'Non-tail-recursive result'
 => Tail-recursive result
-puts Fact.non_tail_recursive(100000)
+puts Fact.non_tail_recursive(100000).to_f
 => fact.rb:6:in `non_tail_recursive': stack level too deep (SystemStackError) `
 
 puts 'Tail-recursive result'
