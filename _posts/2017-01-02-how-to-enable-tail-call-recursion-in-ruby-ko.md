@@ -124,17 +124,15 @@ class Fact
     (1..n).reduce(:*)
   end
 
-  eval <<END
-    def self.non_tail_recursive(n)
-      1 if n <= 1 
-      n * non_tail_recursive(n - 1)
-    end
-
-    def self.tail_recursive(n, acc = 1)
-      return acc if n <= 1
-      tail_recursive(n - 1, acc * n)
-    end
-  END
+  def self.non_tail_recursive(n)
+    1 if n <= 1 
+    n * non_tail_recursive(n - 1)
+  end
+	
+  def self.tail_recursive(n, acc = 1)
+    return acc if n <= 1
+    tail_recursive(n - 1, acc * n)
+  end
 end 
 
 # ruby_vm_option.rb
