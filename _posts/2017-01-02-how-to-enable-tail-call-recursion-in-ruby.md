@@ -90,7 +90,7 @@ RubyVM::InstructionSequence.compile_option = {
 }
 {% endhighlight %}
 
-You can set the `compile_option` in `RubyVIM::InstructionSequence` to enable TCO. That looks simple but there's a complication here. Change to `RubyVM` happens at runtime, so you can't make it work by just including those lines to the file. There are two ways to make it work. 
+You can set the `compile_option` in `RubyVM::InstructionSequence` to enable TCO. That looks simple but there's a complication here. Change to `RubyVM` happens at runtime, so you can't make it work by just including those lines to the file. There are two ways to make it work. 
 
 {% highlight ruby %}
 RubyVM::InstructionSequence.compile_option = {

@@ -88,7 +88,7 @@ RubyVM::InstructionSequence.compile_option = {
 }
 {% endhighlight %}
 
-`RubyVIM::InstructionSequence`의 `compile_option`에서 TCO가 작동하도록 설정할 수 있습니다. 매우 간단해 보이지만 한 가지 문제가 있는데, `RubyVM`에 대한 변경점은 런타임에 적용되기 때문에 `compile_option` 변경 코드를 파일에 그냥 추가하는 것 만으로는 작동하지 않습니다. 이를 해결하는 방법은 두 가지가 있습니다.
+`RubyVM::InstructionSequence`의 `compile_option`에서 TCO가 작동하도록 설정할 수 있습니다. 매우 간단해 보이지만 한 가지 문제가 있는데, `RubyVM`에 대한 변경점은 런타임에 적용되기 때문에 `compile_option` 변경 코드를 파일에 그냥 추가하는 것 만으로는 작동하지 않습니다. 이를 해결하는 방법은 두 가지가 있습니다.
 
 {% highlight ruby %}
 RubyVM::InstructionSequence.compile_option = {
