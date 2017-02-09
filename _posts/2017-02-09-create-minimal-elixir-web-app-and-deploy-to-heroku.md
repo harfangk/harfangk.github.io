@@ -41,7 +41,7 @@ You can use "mix" to compile it, test it, and more:
     mix test
 
 Run "mix help" for more commands.
-{% endhightlight %}
+{% endhighlight %}
 
 ## Add HTTP Server
 
@@ -57,7 +57,7 @@ defmodule Timeconverter.Mixfile do
     ]
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 Then run `mix deps.get` to fetch necessary dependencies.
 
@@ -84,7 +84,7 @@ defmodule Timeconverter.Router do
     {:ok, _} = Plug.Adapters.Cowboy.http(Timeconverter.Router, [])
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 `Plug.Router` provides a set of macros to generate routes that respond to HTTP reqeusts. When you use that module, `match` and `dispatch` plugs are required by default.
 
@@ -109,7 +109,7 @@ defmodule Timeconverter.Application do
     ...
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 Now `Cowboy` HTTP server will also run when our application runs.
 
@@ -152,7 +152,7 @@ defmodule Timeconverter do
     end
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 Nothing interesting here - just some Regex and DateTime functions. Let's look at how we connect the HTTP routes with domain logic. Open `lib/timeconverter/router.ex` and change the route functions.
 
@@ -172,7 +172,7 @@ defmodule Timeconverter.Router do
   end
   ...
 end
-{% endhightlight %}
+{% endhighlight %}
 
 `Plug.Conn` could be understood as the representation of HTTP requests and responses. All useful information about a single HTTP connection is stored in one `Plug.Conn` struct and can be accessed from there. 
 
@@ -194,7 +194,7 @@ erlang_version=19.2
 
 # Elixir version
 elixir_version=1.4.1
-{% endhightlight %}
+{% endhighlight %}
 
 As of February 2017 the buildpack uses Elixir 1.3 when no Elixir version is specified. Since we're using Elixir 1.4, the build causes error if we don't specify the Elixir version we'd like to use.
 
@@ -216,7 +216,7 @@ defmodule Timeconverter.Router do
     end
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 Heroku assigns a port through environment variable PORT. We need to get that port number through `System.get_env("PORT")` so that our application can run on Heroku. `if` clause in `get_port/0` is there to provide port number when we would like to run our application locally.
 
