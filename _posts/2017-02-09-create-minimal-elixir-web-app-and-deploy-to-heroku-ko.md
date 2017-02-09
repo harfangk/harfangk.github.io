@@ -41,7 +41,7 @@ You can use "mix" to compile it, test it, and more:
     mix test
 
 Run "mix help" for more commands.
-{% endhightlight %}
+{% endhighlight %}
 
 ## HTTP 서버 추가하기
 
@@ -57,7 +57,7 @@ defmodule Timeconverter.Mixfile do
     ]
   end
  end
-{% endhightlight %}
+{% endhighlight %}
 
 그리고 `mix deps.get`을 실행해서 필요한 패키지를 설치하세요.
 
@@ -84,7 +84,7 @@ defmodule Timeconverter.Router do
     {:ok, _} = Plug.Adapters.Cowboy.http(Timeconverter.Router, [])
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 `Plug.Router`는 HTTP 요청에 응답하는 경로를 생성할 수 있는 매크로를 제공합니다. `match`와 `dispatch` 플러그는 `Plug.Router`를 사용할 때 필수적입니다. 
 
@@ -109,7 +109,7 @@ defmodule Timeconverter.Application do
     ...
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 이제 Timeconverter 앱이 실행되면 카우보이 HTTP 서버도 실행될 것입니다.
 
@@ -152,7 +152,7 @@ defmodule Timeconverter do
     end
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 Regex와 DateTime 모듈의 함수를 사용하는 정도의 별로 특별할 것 없는 코드입니다. HTTP 경로를 도메인 로직과 어떻게 연결하는지 살펴봅시다. `lib/timeconverter/router.ex` 파일을 열고 경로 관련 함수를 변경해 주세요.
 
@@ -172,7 +172,7 @@ defmodule Timeconverter.Router do
   end
   ...
 end
-{% endhightlight %}
+{% endhighlight %}
 
 `Plug.Conn`은 HTTP 요청과 응답을 나타낸다고 보면 됩니다. 각 `Plug.Conn` 스트럭트에는 하나의 HTTP 연결에 관련된 모든 유용한 정보가 포함되어 있으며 필요에 따라 그 정보를 사용할 수 있습니다.
 
@@ -194,7 +194,7 @@ erlang_version=19.2
 
 # Elixir version
 elixir_version=1.4.1
-{% endhightlight %}
+{% endhighlight %}
 
 엘릭서 버전을 명시하지 않을 경우 빌드팩에서는 2017년 2월 시점에서 엘릭서 1.3 버전을 기본적으로 사용합니다. 우리 앱은 엘릭서 1.4를 사용하고 있으므로 엘릭서 버전을 빌드팩에 명시해줘야 합니다. 그렇지 않으면 빌드에 실패합니다.
 
@@ -216,7 +216,7 @@ defmodule Timeconverter.Router do
     end
   end
 end
-{% endhightlight %}
+{% endhighlight %}
 
 허로쿠는 환경 변수 PORT를 통해서 앱이 사용할 포트를 지정해줍니다. `System.get_env("PORT")` 함수를 사용해서 지정된 포트 값을 받아와야 앱을 허로쿠에서 실행할 수 있습니다. `get_port/0`의 `if`문은 PORT 환경 변수가 없는 로컬 환경에서 앱을 실행하고자 할 때에도 포트 넘버가 지정되도록 합니다.
 
