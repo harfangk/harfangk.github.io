@@ -8,15 +8,15 @@ lang: en
 
 This post will go through how to create a minimal web application in Elixir just using Cowboy, a HTTP server for Erlang/OTP, and Plug, a composable web middleware for Elixir, and deploy it to Heroku. 
 
-Since you've come for a more uncommon barebone approach, I assume that you have a basic familiarity with both Elixir and web development.
+Since you were knowledgeable enough to know about and look for a barebone approach, I assume that you have a basic familiarity with both Elixir and web development.
 
 I'm using Elixir 1.4.1 at the time of writing. The application directory structure and `mix.exs` file configuration got changed in Elixir 1.4, so I recommend you to get Elixir 1.4 or higher. 
 
-Complete source code of the finished sample application can be accessed from [here](https://github.com/harfangk/timeconverter). Link to the running Heroku app is [here](https://blooming-thicket-28926.herokuapp.com/).
+Complete source code of the finished sample application can be found [here](https://github.com/harfangk/timeconverter). Link to the running Heroku app is [here](https://blooming-thicket-28926.herokuapp.com/).
 
 ## Create an Elixir Application
 
-For this post, we will create a simple application that converts datetime between iso8601 and unix formats. 
+In this post, we will create a simple application that converts datetime between iso8601 and unix formats. 
 
 Run `mix new timeconverter --sup` from your shell to create a new Elixir app with built-in supervision tree. 
 
@@ -56,12 +56,12 @@ defmodule Timeconverter.Mixfile do
       {:plug, "~> 1.0"}
     ]
   end
- end
+end
 {% endhightlight %}
 
 Then run `mix deps.get` to fetch necessary dependencies.
 
-After that, we will create `Timeconverter.Router` module that will serve as the HTTP interface of the application. Create `router.ex` in `lib/timeconverter` directory. For now, it would look like this.
+After that, we will create `Timeconverter.Router` module that will serve as the HTTP interface of the application. Create `router.ex` in `lib/timeconverter` directory. Copy the following code into the newly created file.
 
 {% highlight elixir %}
 defmodule Timeconverter.Router do
@@ -86,13 +86,13 @@ defmodule Timeconverter.Router do
 end
 {% endhightlight %}
 
-`Plug.Router` provides a set of macros to generate routes that respond to HTTP reqeusts. `match` and `dispatch` plugs are required by default.
+`Plug.Router` provides a set of macros to generate routes that respond to HTTP reqeusts. When you use that module, `match` and `dispatch` plugs are required by default.
 
-`get "/"` responds to GET request made to the root page. All other requests will be routed to `match _`. 
+`get "/"` will respond to GET requests made to the root page. All other requests will be routed to `match _`. 
 
 Check the documentation for `Plug.Router` from [here](https://hexdocs.pm/plug/Plug.Router.html#content). 
 
-`start_link/3` function is part of `GenServer`, not `Plug.Router`. It defines what `Timeconverter.Router` module will do when it's run under a supervision tree. Here we set it to run `Cowboy` under HTTP.
+`start_link/3` function is a part of `GenServer`, not `Plug.Router`. It defines what `Timeconverter.Router` module will do when it's run under a supervision tree. Here we set it to run `Cowboy` under HTTP.
 
 Next we will include `Timeconverter.Router` under the application's supervision tree so that it will be run when the application runs. Open `lib/timeconverter/application.ex` and add `Timeconverter.Router` as a worker.
 
@@ -119,7 +119,7 @@ Run `mix run --no-halt` from the shell. If you are prompted to install `rebar` d
 
 Since this post is about building a minimal web app and deploying it, we will not go into the domain logic itself. It's a pretty boring example, anyway.
 
-Replace the contents of `lib/timeconverter.ex` with this. Remember that this sample code is also provided on github. 
+Replace the contents of `lib/timeconverter.ex` with the following code. Remember that this sample code is also provided on github. 
 
 {% highlight elixir %}
 defmodule Timeconverter do
@@ -154,7 +154,7 @@ defmodule Timeconverter do
 end
 {% endhightlight %}
 
-Just some Regex for validation and nothing interesting here. Let's look at how we connect the HTTP routes with domain logic. Open `lib/timeconverter/router.ex` and change the route functions.
+Nothing interesting here - just some Regex and DateTime functions. Let's look at how we connect the HTTP routes with domain logic. Open `lib/timeconverter/router.ex` and change the route functions.
 
 {% highlight elixir %}
 defmodule Timeconverter.Router do
@@ -176,15 +176,15 @@ end
 
 `Plug.Conn` could be understood as the representation of HTTP requests and responses. All useful information about a single HTTP connection is stored in one `Plug.Conn` struct and can be accessed from there. 
 
-Parameters can be accessed from `conn.params` only after running `Plug.Conn.fetch_query_params/1`. After getting the parameters, we pass `conn.params` to our domain logic function `Timeconverter.convert_datetime/1`. As you can see, connecting HTTP endpoint layer and domain logic is simple and straightforward.
+Query parameters can be accessed from `conn.params` only after running `Plug.Conn.fetch_query_params/1`. After getting the parameters, we pass `conn.params` to our domain logic function `Timeconverter.convert_datetime/1`. As you can see, connecting HTTP endpoint layer and domain logic is simple and straightforward.
 
-Quit the application and run it again. Now the app will respond to different parameters.
+Quit the application and run it again. Now the app will respond to different query parameters.
 
 ## Deploying to Heroku
 
 You need Heroku account and Heroku Command Line Interface for this part. If you haven't set it up already, visit [Heroku dev center](https://devcenter.heroku.com/articles/heroku-cli) and follow the instructions.
 
-We need buildpacks to deploy to Heroku. Although Elixir is not officially supported, there's an open source buildpack for Elixir created by HashNuke. We will use that buildpack to deploy to Heroku. Check the documentation from [here](https://github.com/HashNuke/heroku-buildpack-elixir). 
+We need buildpacks to deploy to Heroku. Although Elixir is not officially supported, there's an open source buildpack for Elixir created by HashNuke. We will use that buildpack to deploy to Heroku. Check the documentation for HashNuke's buildpack from [here](https://github.com/HashNuke/heroku-buildpack-elixir). 
 
 But we need to make a few preparations before deploying. First create `elixir_buildpack.config` file in the application's root directory and type the following configurations. 
 
@@ -218,8 +218,8 @@ defmodule Timeconverter.Router do
 end
 {% endhightlight %}
 
-Heroku assigns a port through environment variable. We need to get that port number through `System.get_env("PORT")` so that our application can run on Heroku. `if` clause in `get_port/0` is there to provide port number when we would like to run our application locally.
+Heroku assigns a port through environment variable PORT. We need to get that port number through `System.get_env("PORT")` so that our application can run on Heroku. `if` clause in `get_port/0` is there to provide port number when we would like to run our application locally.
 
 Go to the root directory of our application. Then create a Heroku app with the buildpack by running `heroku create --buildpack "https://github.com/HashNuke/heroku-buildpack-elixir.git"`.
 
-The script will build the Heroku application and also set a git remote called heroku. Run `git push heroku master` to deploy the application to Heroku. Now your application will be all set and running. Run `heroku open` to open the application in your browser and check if it's running correctly.
+The script will build the Heroku application and also set a git remote repository called heroku. Run `git push heroku master` to deploy the application to Heroku. Now your application is all set and running. Run `heroku open` to open the application in your browser and check if it's running correctly.
