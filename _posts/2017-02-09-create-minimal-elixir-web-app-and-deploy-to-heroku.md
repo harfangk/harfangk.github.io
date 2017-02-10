@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: minimal-elixir-web-app-to-heroku
-date: 2017-01-27 00:00:00 +0900
+date: 2017-02-09 00:00:00 +0900
 title: How to Create Minimal Elixir Web App With Plug and Cowboy and Deploy to Heroku
 lang: en
 ---

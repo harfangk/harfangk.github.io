@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: minimal-elixir-web-app-to-heroku
-date: 2017-01-27 00:00:00 +0900
+date: 2017-02-09 00:00:00 +0900
 title: 플러그와 카우보이만 사용해서 미니멀한 엘릭서 웹 앱을 만들고 허로쿠에 배포하기
 lang: ko
 ---
