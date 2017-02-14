@@ -1,16 +1,16 @@
 ---
 layout: post
 ref: minimal-elixir-web-app-to-heroku
-date: 2017-01-27 00:00:00 +0900
+date: 2017-02-09 00:00:00 +0900
 title: How to Create Minimal Elixir Web App With Plug and Cowboy and Deploy to Heroku
 lang: en
 ---
 
-This post will go through how to create a minimal web application in Elixir just using Cowboy, a HTTP server for Erlang/OTP, and Plug, a composable web middleware for Elixir, and deploy it to Heroku. 
+This post will go through how to create a minimal web application in Elixir just using Cowboy, an HTTP server for Erlang/OTP, and Plug, a composable web middleware for Elixir, and deploy it to Heroku. 
 
-Since you were knowledgeable enough to know about and look for a barebone approach, I assume that you have a basic familiarity with both Elixir and web development.
+Since you are knowledgeable enough to know about and look for a barebone approach, I assume that you have a basic familiarity with both Elixir and web development.
 
-I'm using Elixir 1.4.1 at the time of writing. The application directory structure and `mix.exs` file configuration got changed in Elixir 1.4, so I recommend you to get Elixir 1.4 or higher. 
+I'm using Elixir 1.4.1 at the time of writing. The application directory structure and `mix.exs` file configuration got changed in Elixir 1.4, so I recommend you to get Elixir 1.4 or higher to minimize discrepancy. 
 
 Complete source code of the finished sample application can be found [here](https://github.com/harfangk/timeconverter). Link to the running Heroku app is [here](https://blooming-thicket-28926.herokuapp.com/).
 
