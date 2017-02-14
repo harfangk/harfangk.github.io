@@ -1,8 +1,8 @@
 ---
 layout: post
-ref: my-favorite-ruby-rogues-episodes-
+ref: my-favorite-ruby-rogues-episodes-career-and-organizational-management
 date: 2017-03-04 00:00:00 +0900
-title: 
+title: My Favorite Ruby Rogues Episodes - Career and Organizational Management
 lang: en
 ---
 
