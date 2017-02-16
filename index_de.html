@@ -11,6 +11,7 @@ lang: de
   <ul class="post-list">
     {% assign posts=site.posts | where:"lang", page.lang %}
     {% for post in posts %}
+      {% if post.date <= site.time %}
       <li>
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
@@ -18,6 +19,7 @@ lang: de
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
         <p class = "post-excerpt">{{ post.content | strip_html | truncatewords: 50 }}</p>
       </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>
