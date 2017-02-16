@@ -6,40 +6,32 @@ title: My Favorite Ruby Rogues Episodes - Book Club Series
 lang: en
 ---
 
-As I taught myself to program, Ruby Rogues podcast has been invaluably helpful
-to me. Books and blog posts could teach me specific technological knowledge,
-but they couldn't provide me a broader perspective about programming. Ruby
-Rogues podcast filled that gap. Charles Max Wood, the host of the show, and
-panelists and guests have my deepest gratitude.
+As I taught myself to program, Ruby Rogues podcast has been invaluably helpful to me. Books and blog posts could teach me specific technological knowledge, but they couldn't provide me a broader perspective about programming. Ruby Rogues podcast filled that gap. Charles Max Wood, the host of the show, and panelists and guests have my deepest gratitude.
 
-When I first started writing this blog post, I wanted to pick my favorite
-episodes out of total 297 Ruby Rogues episodes. But as I went through the list
+When I first started writing this blog post, I wanted to pick my favorite episodes out of the 300 Ruby Rogues episodes. But as I went through the list
 of episodes, I realized that I liked almost all of them. They all taught me
 something.
 
-Still, if I had to pick, I think the book club series deserve the most
-attention among the episodes. In the book club series, the authors of the
-selected book and panelists discuss the contents of the book and share their
-insights. If you had to listen to only about a dozen Ruby Rogues episodes,
-these 17 episodes are what I would recommend.
+Still, if I had to pick, I would pick the book club series first. In the book club series, the authors of the
+selected book and panelists discuss the contents of the book and share their thoughts. They are like timeless classics that provide enduring insight.
 
 ## Book Club Series
 
 [019 RR Book Club: Exceptional Ruby with Avdi Grimm](https://devchat.tv/ruby-rogues/019-rr-book-club-exceptional-ruby-with-avdi-grimm)
 
-The book is about exceptions, so the discussion is also about exceptions. What
+This is an in-depth discussion about exceptions. What
 are exceptions? How are they different from errors? How should they be handled?
 
 [023 RR Book Club: Smalltalk Best Practice Patterns with Kent Beck](https://devchat.tv/ruby-rogues/023-rr-book-club-smalltalk-best-practice-patterns-with-kent-beck)
 
-Kent Beck and panelists discuss best practice patterns developed in Smalltalk,
-the mother language of all OOP languages. It's amazing that those practices
-are still effective after 20 years since the book's publication. 
+Kent Beck and panelists discuss best practices in Smalltalk,
+the mother of all OOP languages. It's amazing that those practices
+are still relevant after 20 years since the book's publication. 
 
 [033 RR Book Club – Eloquent Ruby with Russ Olsen](https://devchat.tv/ruby-rogues/033-rr-book-club-eloquent-ruby-with-russ-olsen)
 
 This is an in-depth discussion about Ruby in general. A great episode for Ruby
-programmers, but not for non-Ruby folk.
+programmers, but maybe not for non-Ruby folk.
 
 [043 RR Book Club: Land of Lisp with Conrad Barski](https://devchat.tv/ruby-rogues/043-rr-book-club-land-of-lisp-with-conrad-barski)
 
@@ -54,9 +46,7 @@ much out of the episode.
 [068 RR Book Club: Growing Object Oriented Software Guided by Tests with Steve
 Freeman and Nat Pryce](https://devchat.tv/ruby-rogues/068-rr-book-club-growing-object-oriented-software-guided-by-tests-with-steve-freeman-and-nat-pryce)
 
-A discussion about how to design OO application through tests. The discussion
-is about a more fundamental and broader perspective about Test Driven
-Development than specific techniques.. 
+A discussion about how to design OO application through tests. The panelists speak about a more fundamental perspective regarding the Test Driven Development than about specific techniques of it.
 
 [087 RR Book Club: Practical Object-Oriented Design in Ruby with Sandi Metz](https://devchat.tv/ruby-rogues/087-rr-book-club-practical-object-oriented-design-in-ruby-with-sandi-metz)
 
@@ -69,7 +59,7 @@ Fowler](https://devchat.tv/ruby-rogues/097-rr-book-club-patterns-of-enterprise-a
 
 The word "enterprise" became a sort of scarlet letter among programmers, but at
 the time Martin Fowler wrote the book, that word simply meant "commercial". The
-panelists discuss how to build a proper, reliable app.
+panelists discuss what it takes to build a proper, reliable app.
 
 [104 RR Book Club: The Rails View with John Athayde and Bruce Williams](https://devchat.tv/ruby-rogues/104-rr-book-club-the-rails-view-with-john-athayde-and-bruce-williams)
 
@@ -86,7 +76,7 @@ a programmer.
 
 Computation often gets dismissed as a boring academic topic, but the discussion
 in this episode is so lively and illuminating that it would make you reconsider
-your view. 
+if that was how you thought of it.
 
 [128 RR Book Club: Confident Ruby with Avdi Grimm](https://devchat.tv/ruby-rogues/128-rr-book-club-confident-ruby-with-avdi-grimm)
 
@@ -99,13 +89,12 @@ discuss the implications and examples of confident programming.
 with Brian Marick](https://devchat.tv/ruby-rogues/137-rr-book-club-functional-programming-for-the-object-oriented-programmer-with-brian-marick)
 
 The title says it all! The discussion is about difference between FP and OOP,
-and how to approach FP. 
+and how to approach FP for those more familiar with OOP. 
 
 [146 RR Book Club – Ruby Under a Microscope with Pat Shaughnessy](https://devchat.tv/ruby-rogues/146-rr-book-club-ruby-under-a-microscope-with-pat-shaughnessy)
 
 Deep dive into the internal workings of Ruby, particularly MRI. Even if you're
-not interested in reading the book, just listening to the episode will give you
-a glimpse at it.
+not interested in reading the book, just listening to the episode will grant you a better understanding of Ruby.
 
 [157 RR Book Club – Object Design Book Club with Rebecca Wirfs-Brock](https://devchat.tv/ruby-rogues/157-rr-book-club-object-design-book-club-with-rebecca-wirfs-brock)
 
@@ -115,8 +104,7 @@ make in each step?
 
 [178 RR – Book Club: Refactoring Ruby with Martin Fowler](https://devchat.tv/ruby-rogues/178-rr-book-club-refactoring-ruby-with-martin-fowler)
 
-The discussion revolves around the characteristics of Ruby in relation to
-refactoring rather than actual refactoring of code. 
+The panelists discuss the characteristics of Ruby in relation to refactoring. They don't do actual refactoring of code in the episode.
 
 [243 RR Books That Aren't POODR](https://devchat.tv/ruby-rogues/243-rr-books-that-arent-poodr)
 
@@ -126,5 +114,5 @@ ranging from technological ones to business ones.
 ## More to follow
 
 I've split the episodes into three categories: book club, personal growth, and
-organizational dynamics. I will post the other two categories in separate
+career and organization management. I will post the other two categories in separate
 posts.
