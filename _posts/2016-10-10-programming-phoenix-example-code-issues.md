@@ -2,7 +2,7 @@
 layout: post
 ref: programming-phoenix-example-code-issues
 date:   2016-10-10 00:00:00 +0900
-title: Resolving Issues with Example Code in Programming Phoenix
+title: List of Outdated Example Code in Programming Phoenix
 lang: en
 ---
 
@@ -16,6 +16,8 @@ $ mix archive.install https://github.com/phoenixframework/archives/raw//master/
 {% endhighlight %}
 
 The authors of the book plan to update the book when Phoenix 1.3 is released, which will fix these broken examples for good.
+
+Edit: At the time of writing I used Elixir 1.3.4. More recent Elixir 1.4 slightly changes the content of `mix.exs` and the directory structure of app created by running `mix new MyApp --sup`. But they are both minor changes and won't affect following the sample code.
 
 ### Building Forms, Chapter 4 (PDF page 60)
 In *rumbl/web/models/user.ex*:

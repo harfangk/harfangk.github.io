@@ -2,7 +2,7 @@
 layout: post
 ref: programming-phoenix-example-code-issues
 date:   2016-10-10 00:00:00 +0900
-title: Programming Phoenix에서 문제가 발생하는 예제 코드 모음
+title: Programming Phoenix에서 버전 때문에 달라진 예제 코드 모음
 lang: ko
 ---
 
@@ -16,6 +16,8 @@ $ mix archive.install https://github.com/phoenixframework/archives/raw//master/
 {% endhighlight %}
 
 저자들의 말에 따르면 Phoenix 1.3이 출시되면 그에 맞춰서 책을 개정한다고 하니 그 이후로는 버전 문제로 인해 예제 코드에서 에러가 발생하지 않게 될 것 같습니다.
+
+추가: 이 글을 작성할 당시에는 엘릭서 1.3.4 버전을 사용했는데 최근에 엘릭서가 1.4 버전으로 업데이트되면서 `mix.exs` 파일의 내용이 조금 바뀌었고, `mix new MyApp --sup` 명령어가 생성하는 디렉토리 구조도 조금 바뀌었습니다. 하지만 책에 있는 예제를 따라하는 데는 영향이 없습니다.
 
 ### Building Forms, Chapter 4 (PDF page 60)
 *rumbl/web/models/user.ex*:
