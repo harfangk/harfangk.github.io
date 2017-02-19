@@ -68,5 +68,5 @@ Of course, a senior developer would require other skills too. For example,
 being able to design the architecture of software and choose correct algorithms
 would be one. Being able to appropriately balance short-term corner cutting
 with long-term accrual of technical debt would be another. Is my standard for
-a senior developer too high? I don't know. All I know is that I am still far,
+a senior developer too high? Or is it too low? I don't know. All I know is that I am still far,
 far away from being one.
