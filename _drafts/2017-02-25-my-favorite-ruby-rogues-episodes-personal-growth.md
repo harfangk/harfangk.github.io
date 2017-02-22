@@ -6,37 +6,30 @@ title: My Favorite Ruby Rogues Episodes - Personal Growth
 lang: en
 ---
 
-The previous post was about book club episodes. This post is about episodes
-that discuss methods and perspectives that can help you grow as an individual
+The previous post was about book club episodes. This post is about episodes that discuss methods and perspectives that can help you grow as an individual
 developer.
 
 ## Becoming a Better Developer
 
 [009 RR What Makes Beautiful Code](https://devchat.tv/ruby-rogues/what-makes-beautiful-code)
 
-A discussion of what the panelists consider to be beautiful code. Very
-subjective yet interesting opinions.
+A discussion of what the panelists consider to be beautiful code. Very subjective yet interesting opinions.
 
 [013 RR Technical Debt](https://devchat.tv/ruby-rogues/013-rr-technical-debt)
 
-A discussion about what technical debt is, and what factors should be
-considered when making a decision to take that debt.
+A discussion about what technical debt is, and what factors should be considered when making a decision to take that debt.
 
 [016 RR Becoming a Better Developer](https://devchat.tv/ruby-rogues/016-rr-becoming-a-better-developer)
 
-What does it mean to be a good developer? How does one become a better
-developer? Each panelist discusses his point of view.
+What does it mean to be a good developer? How does one become a better developer? Each panelist discusses his point of view.
 
 [030 RR Software Craftsmanship with Noel Rappin](https://devchat.tv/ruby-rogues/030-rr-software-craftsmanship-with-noel-rappin)
 
-Software craftmanship refers to the style of painstakingly building
-a masterpiece software, as opposed to building something that is just good
-enough to work without breaking down. What are pros and cons of this approach?
+Software craftmanship refers to the style of painstakingly building a masterpiece software, as opposed to building something that is just good enough to work without breaking down. What are pros and cons of this approach?
 
 [034 RR Benchmarking and Profiling](https://devchat.tv/ruby-rogues/034-rr-benchmarking-and-profiling)
 
-Why are benchmarking and profiling necessary, and when should they be used for
-which purpose?
+Why are benchmarking and profiling necessary, and when should they be used for which purpose?
 
 [035 RR Estimation](https://devchat.tv/ruby-rogues/035-rr-estimation)
 
@@ -44,21 +37,15 @@ Why does estimation always fail horribly? How can we remedy it as developers?
 
 [039 RR Programming Language Fundamentals](https://devchat.tv/ruby-rogues/039-rr-programming-language-fundamentals)
 
-Each language gives you unique and fundamental knowledge and perspective. You
-should never settle on just one language. Explore.
+Each language gives you unique and fundamental knowledge and perspective. You should never settle on just one language. Explore.
 
 [047 RR Coding Disciplines with Dan Kubb](https://devchat.tv/ruby-rogues/047-rr-coding-disciplines-with-dan-kubb)
 
-Try different coding styles by setting constraints to yourself, and see how
-those constraints affect you. It's an application of scientific method of trial
-and error in finding better coding practices.
+Try different coding styles by setting constraints to yourself, and see how those constraints affect you. It's an application of scientific method of trial and error in finding better coding practices. All code is experimental.
 
 [077 RR Complexity with Glenn Vanderburg](https://devchat.tv/ruby-rogues/077-rr-complexity-with-glenn-vanderburg)
 
-Complexity is so hard to deal with for us that by default human brain responds
-to it by simplifying the problem - often overly so. But what are the costs of
-such oversimplification? This concerns not just programming but also
-interpersonal complexities.
+Complexity is so hard to deal with for us that by default human brain responds to it by simplifying the problem - often overly so. But what are the costs of such oversimplification? This concerns not just programming but also interpersonal complexities.
 
 [086 RR Learning From The Past with Arlen Walker](https://devchat.tv/ruby-rogues/086-rr-learning-from-the-past-with-arlen-walker)
 
