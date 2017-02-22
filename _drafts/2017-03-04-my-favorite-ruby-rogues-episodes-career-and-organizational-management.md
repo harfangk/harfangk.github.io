@@ -83,7 +83,7 @@ Code review often becomes something that everybody hates. The panelists discuss 
 
 [229 RR Adopting New Technology](https://devchat.tv/ruby-rogues/229-rr-adopting-new-technology)
 
-New technology should have minimal entry cost and maximal payoff. This should apply not just to the proponent, but also all the other people who will be affected by the new technology. The panelists also talk about proper process to bring in the new technology.
+New technology should have minimal entry cost and maximal payoff. This should apply not just to the proponent of the new technology, but also all the other people who will be affected by the new technology. The panelists also talk about proper process to bring in the new technology.
 
 [230 RR Hiring Diversely with Sarah Mei](https://devchat.tv/ruby-rogues/230-rr-hiring-diversely-with-sarah-mei)
 
@@ -91,11 +91,11 @@ It's important to note that everyone has different culture. Each junior develope
 
 [233 RR Onboarding New Employees](https://devchat.tv/ruby-rogues/233-rr-onboarding-new-employees)
 
-The panelists discuss good and bad onboarding experiences they had, and onboarding in various contexts such as remote versus local, team versus project, and role of senior developers. 
+The panelists discuss good and bad onboarding experiences they had, and onboarding in various contexts such as remote versus local, team versus project, and role of senior developers in onboarding process. 
 
 [240 RR What Makes a Good Manager with Marcus Blankenship](https://devchat.tv/ruby-rogues/240-rr-what-makes-a-good-manager-with-marcus-blankenship)
 
-You need to let go of the need to prove your coding skills to be acknowledged as a manager. In fact, when you become a manager, don't get involved in production code because it's not your responsibility now. Instead, focus on helping your team. Have a weekly meeting with each individual of the team you manage. Shorten the feedback loop. 
+You need to let go of the need to prove your coding skills - it has nothing to do with being acknowledged as a manager. In fact, when you become a manager, don't get involved in production code because it's not your responsibility now. Instead, focus on helping your team. Have a weekly meeting with each individual of the team you manage. Shorten the feedback loop. 
 
 [249 RR The Normalization of Deviance with Dan Luu](https://devchat.tv/ruby-rogues/249-rr-the-normalization-of-deviance-with-dan-luu)
 
