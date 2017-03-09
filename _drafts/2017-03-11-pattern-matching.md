@@ -1,8 +1,8 @@
 ---
 layout: post
-ref: pattern-matching
+ref: what-makes-pattern-matching-in-elixir-so-nice
 date: 2017-03-11 00:00:00 +0900
-title: Pattern Matching
+title: What Makes Pattern Matching in Elixir So Nice?
 lang: en
 ---
 
