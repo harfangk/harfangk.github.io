@@ -2,41 +2,41 @@
 layout: post
 ref: elixir-usability-improvement-over-erlang
 date: 2017-03-18 00:00:00 +0900
-title: What Makes Pattern Matching in Elixir So Nice?
+title: 엘릭서에서 얼랭보다 사용성이 개선된 9가지 측면
 lang: ko
 ---
 
-Important overhaul Elixir did to Erlang to become appealing web-development tool
+이 글은 [Sergii Boiko](http://railsware.com/blog/author/sergii-boiko/)가 [railsware](http://railsware.com/)에 올린 [Important overhaul Elixir did to Erlang to become appealing web-development tool](http://railsware.com/blog/2016/08/23/important-overhaul-elixir-did-to-erlang-to-become-appealing-web-development-tool) 라는 글의 전문을 번역한 글입니다.  
 
 ---
 
-I often hear the same question: if Elixir works on the Erlang VM, why not use Erlang for programming web-applications instead of Elixir? The short answer is – you can’t create something akin to Phoenix/Ecto with pure Erlang.
+엘릭서가 얼랭 VM에서 돌아간다면 그냥 엘릭서 대신 얼랭을 써서 웹 어플리케이션을 만들면 되지 않나? 라는 질문을 종종 듣곤 한다. 짧게 답하자면 순수한 얼랭만으로는 피닉스/엑토 같은 것을 만드는 것은 불가능하다.
 
-Does it mean that Elixir is a totally different language? No, it doesn’t. I would describe Elixir as 80% of Erlang and 20% of important stuff that drastically improved usability of the language, especially when writing web-applications. The funny thing is that even Joe Armstrong once said that Erlang is not suited for web-development. But I would say that Erlang is more verbose to write web-applications.
+그렇다면 엘릭서가 완전히 다른 언어라는 의미인가? 그렇지는 않다. 내 생각에 엘릭서는 80%가 얼랭이고, 나머지 20%는 특히 웹 어플리케이션을 만들 때 언어의 사용성을 극적으로 개선시켜주는 중요한 요소로 이루어져 있다. 재미 있는 것은 조 암스트롱 본인도 얼랭은 웹 개발에 적합하지 않다고 말한 적이 있다는 것이다. 하지만 나라면 얼랭은 웹 어플리케이션을 만들려면 코드가 장황해진다고 표현할 것이다. 
 
-So, let’s discuss most important differences between Elixir and Erlang.
+엘릭서와 얼랭의 차이점 중 가장 중요한 것들을 한 번 살펴보자.
 
-## 1. Fixed strings
+## 1. 문자열 문제 해결
 
-Erlang has hard relations with strings. First of all, because of Prolog heritage original string type is just a list of characters which is very inefficient. No one uses this type now, they use binaries instead. But binaries have weird syntax. Imagine you write a simple string and that’s what it looks like:
+얼랭의 문자열에는 문제가 많다. 얼랭이 최초에 사용한 문자열 타입은 그냥 char 리스트였는데, 이건 프롤로그 언어에서 물려받은 방식으로 매우 비효율적이었다. 요즘은 아무도 이걸 쓰지 않고 대신 바이너리를 사용한다. 하지만 바이너리 문법은 이상하게 생겼다. 간단한 문자열을 하나 작성하려고 하는데도 다음과 같이 작성해야 한다고 생각해보자.
 
 {% highlight erlang %}
 <<"Hello world">> % binary-string in Erlang
 {% endhighlight %}
 
+난 얼랭으로 개발을 할 때 이 엉망진창인 문자들을 타이핑하지 않으려는 일념 하에 빔에 특수한 단축키를 설정해야 했다.
+
+바이너리의 또다른 문제는 얼랭에는 문자열 라이버러리와는 달리 바이너리를 다루는 쓸만한 라이브러리가 없다는 점이다. 물론 직접 솔루션을 만들 수도 있지만 그건 매우 번거로울 뿐 아니라 심각한 파편화도 초래한다. 내가 직접 만든 라이브러리의 API를 아는 사람이 없을 테니까. 또한 얼랭은 정규식을 라이브러리 형태로만 지원한다. 연산자도 없고, 문법에서 퍼스트 클래스로 지원해주지도 않는다.
+
 {% highlight elixir %}
 "Hello world" # the same string backed by binary but in Elixir
 {% endhighlight %}
 
-I had to create a special shortcut in Vim just not to type this mess of characters while programming in Erlang.
+엘릭서는 문자열을 매우 잘 지원한다. 문법도 그냥 간단한 따옴표를 사용한다. 문자열 모듈의 API는 매우 우수하며, 심지어 `String.pad_leading`을 통해서 "left_pad"도 지원한다. 정규식에는 특수한 리터럴도 있고, 비교 연산자인 `=~`도 있으며 기능이 개선된 `Regexp` 모듈도 있다.
 
-Another issue with binaries is that Erlang doesn’t have a decent library for working with them as as it does for strings. Of course, you can roll-out your hand-made solution, but it’s a big pain and fragmentation, because nobody would know an API of your library. Also, regexps in Erlang are supported only as a library. There is no operators and first-class support in syntax for them.
+## 2. 우수한 표준 라이브러리
 
-Elixir supports strings very well. The syntax is just simple quotes. String module has a very good API and even “left_pad” is present – `String.pad_leading`. Regexps have a special literal, comparison operator `=~` and improved `Regexp` module.
-
-## 2. Superb standard library
-
-Historically, Erlang has a very inconsistent and poor standard library. For example, module `lists` doesn’t have a lot of important functions. Say, you want to find the first list element which is `>10`. Here is an Erlang version:
+역사적으로 얼랭의 표준 라이브러리는 매우 일관성이 없고 빈약했다. 예를 들어 `lists` 모듈에는 중요한 함수가 많이 부족하다. 리스트에서 10보다 큰 첫 번째 요소를 찾으려고 한다고 해보자. 얼랭 코드는 이렇다.
 
 {% highlight erlang %}
 case lists:dropwhile(fun(X) -> X =< 10 end, [1, 3, 8, 15, 7, 100]) of
@@ -46,35 +46,35 @@ end.
 %=> 15
 {% endhighlight %}
 
-The same solution in Elixir:
+엘릭서로 작성한 동일한 솔루션이다.
 
 {% highlight elixir %}
 Enum.find([1, 3, 8, 15, 7, 100], fn(x) -> x > 10 end) #=> 15
 {% endhighlight %}
 
-In Elixir, everything is put in very logical (especially if you know Ruby) modules. Also, there are brilliant `Enum` and `Stream` modules which unify work with lists, maps and other iterables. And they’re only partially covered by Erlang stdlib.
+엘릭서는 각 함수를 (특히 루비를 배웠다면) 매우 타당한 이름의 모듈 안에 넣어 놓았다. 또한 우수한 모듈인 `Enum`과 `Stream`은 리스트, 맵, 그리고 다른 iterable을 동일한 방식으로 다룰 수 있도록 해준다. 얼랭 표준 라이브러리는 이 모듈들이 제공하는 기능의 일부 밖에는 제공하지 않는다.
 
-## 3. Added namespaces
+## 3. 네임스페이스 추가
 
-While it looks like not a big deal, it is. Every Erlang module lives in a global flat space. There are no namespaces, no packages. So, not to collide with other packages, you should always prefix your modules with some unique tag. Then this prefix is used across the whole project and it’s just garbage. For example, if your project name is Cowboy, best practice is to have all modules to be prefixed with “cowboy_”: “cowboy_router”, “cowboy_stream”, etc.
+별 것 아닌 것처럼 보이지만 꽤나 중요한 부분이다. 얼랭 모듈은 모두 하나의 평면적인 공간에 존재하며, 네임스페이스나 패키지 개념이 없다. 그래서 다른 패키지와의 충돌을 방지하려면 모듈에 고유한 태그를 항상 접두사로 붙여야 한다. 그리고 이 접두사를 프로젝트 전체에 걸쳐 사용하게 되는데, 완전 쓰레기 같다. 예를 들어 프로젝트 이름이 Cowboy면 모든 모듈에 "cowboy\_" 접두사를 붙여서 "cowboy\_router", "cowboy\_stream" 처럼 명명하는 것이 베스트 프랙티스다.
 
-And then, if you want to call a function from some module, you need to use this name in a code:
+그리고 어떤 모듈 안에 정의된 함수를 호출하려면 그 모듈 이름을 사용해야만 한다.
 
 {% highlight erlang %}
 cowboy_req:reply(400, Req).
 {% endhighlight %}
 
-Elixir emulates namespaces and submodules with aliases (because it still works in the ErlangVM). If a project has some funky name, e.g. “TenMinutesBlog” and it has a model `TenMinutesBlog.User`, you don’t need to use the full name because there is `alias` directive:
+엘릭서도 여전히 ErlangVM에서 돌아가기 때문에 alias를 사용해서 네임스페이스와 서브모듈 기능을 흉내낸다. `TenMinutesBlog` 같은 기묘한 이름의 프로젝트에 `TenMinutesBlog.User`라는 모델이 있으면 그 이름을 전부 사용할 필요가 없다. `alias` 덕분이다.
 
 {% highlight elixir %}
 alias TenMinutesBlog.User
 {% endhighlight %}
 
-Now it’s possible to reference this module just with a `User` name.
+이제 이 모듈을 `User`라는 간결한 이름으로 사용할 수 있다.
 
-## 4. Added Structs
+## 4. 스트럭트 추가
 
-One of the most hated part of Erlang is records. They were added in a very ad-hoc manner and with a verbose syntax. Here is how to create and use a Person record in Erlang:
+레코드는 사람들이 얼랭에서 가장 싫어하는 것들 중 하나다. 제대로 된 계획 없이 만들어졌을 뿐 아니라 문법도 장황하다. 얼랭에서 `Person` 레코드를 사용해서 만들려면 다음과 같이 해야 한다.
 
 {% highlight erlang %}
 -module(using_record).
@@ -84,9 +84,9 @@ full_name(Person) ->
   Person#person.fname ++ " " ++ Person#person.lname.
 {% endhighlight %}
 
-Noticed that ‘#person’ noisy part? That’s how records roll in Erlang.
+눈에 거슬리는 `#person` 부분이 보이는가? 얼랭에서 레코드를 사용하는 문법이다.
 
-In Elixir structs are as simple, as they should be, and a similar code looks like this:
+엘릭서 스트럭트는 매우 간단하며, 위 코드와 유사한 기능을 다음과 같이 구현한다.
 
 {% highlight elixir %}
 defmodule Person do
@@ -100,9 +100,9 @@ defmodule UsingStruct do
 end
 {% endhighlight %}
 
-## 5. Allowed variable rebinding
+## 5. 변수 리바인딩 허용
 
-Because functional languages use immutable data structures, any change to a data creates new data. So, every time you mutate a state – you need to assign it to a new variable. This leads to a very fragile code, if you want to add something inside your logical steps and carefully rename variables. Here is an Erlang code:
+함수형 언어는 immutable 자료구조를 사용하기 때문에 자료에 변화가 있을 때마다 자료를 새로 만들게 된다. 따라서 자료의 상태가 변화할 때마다 그걸 새 변수에 바인드해야 한다. 이러면 프로그램에 로직을 추가하려 할 때 변수 이름도 주의를 기울여서 변경해야 하기 때문에 매우 변화에 취약한 코드가 만들어진다. 얼랭 코드를 보자.
 
 {% highlight erlang %}
 Users1 = user:get_all_users(),
@@ -110,9 +110,9 @@ Users2 = user:add_user(Users1, User),
 Users3 = user:remove_user(Users2, User2)
 {% endhighlight %}
 
-As soon, as we need to insert some intermediate step, we need to rename User3 to User4 and so on. This is a common issue in a pure FP-languages, and for example in Haskell you should use State-monad to handle such logic.
+이 코드에 중간 단계를 추가하려면 `User3`를 `User4`로 바꾸는 등의 작업을 해야 한다. 이건 순수한 함수형 언어에 공통적으로 발생하는 문제다. 예를 들어 하스켈에서는 state monad를 사용해서 이런 로직을 다룬다.
 
-José Valim did a very dare trick in Elixir and allowed variable rebinding. Aha – so Elixir has a mutability! But it’s not a mutability per se. Because original data structure is not mutated and Elixir doesn’t have cycles, it’s safe. Same code in Elixir:
+조제 발림은 매우 대담하게도 엘릭서에 변수 리바인딩을 허용했다. 엘릭서는 자료를 변형할 수 있다는 말이구나! 라고 이해할 수도 있지만 그렇지는 않다. 원래의 자료구조가 변형되는 것도 아니고, 엘릭서에는 순환 참조도 없기 때문에 안전하다. 동일한 로직을 엘릭서로 작성한 코드다.
 
 {% highlight elixir %}
 users = User.get_all_users
@@ -120,11 +120,11 @@ users = User.add_user(users, user)
 users = User.remove_user(users, user2)
 {% endhighlight %}
 
-Now you can add any intermediate step and nothing has to be renamed.
+이제 이름을 변경할 필요 없이 자유롭게 중간 단계를 추가할 수 있다.
 
-## 6. Added Pipe-operator |>
+## 6. 파이프 연산자 |> 추가
 
-Erlang doesn’t have pipe operator, so if you want to compose a lot of calls, it’s better to split them and make some intermediate variable assignments. For example, let’s filter only even numbers, square them and reverse the final list in Erlang:
+얼랭에는 파이프 연산자가 없기 때문에 함수 호출 여러개를 합성하려면 몇 단계로 쪼개서 중간중간에 변수에 할당하는 것이 좋다. 예를 들어 얼랭으로 짝수만을 골라내서 제곱을 한 뒤에 리스트의 순서를 뒤집어보자.
 
 {% highlight erlang %}
 lists:reverse(
@@ -134,7 +134,7 @@ lists:reverse(
 ).
 {% endhighlight %}
 
-This code is hardly readable and should be split into several steps. Elixir’s pipe operator provides much more readable solution:
+이 코드는 매우 읽기 힘들며 여러 단계로 분리되어야 한다. 엘릭서 파이프 연산자를 사용하면 훨씬 읽기 편한 코드를 작성할 수 있다.
 
 {% highlight elixir %}
 [1,2,3,4]
@@ -143,21 +143,21 @@ This code is hardly readable and should be split into several steps. Elixir’s 
 |> Enum.reverse
 {% endhighlight %}
 
-## 7. Added polymorphism
+## 7. 다형성 추가
 
-Erlang doesn’t have a simple way to emulate polymorphism. Elixir, on the contrary, has protocols and you can describe any set of functions that protocol should support.
+얼랭에는 다형성을 간단하게 구현할 수 있는 방법이 없다. 반면 엘릭서에는 프로토콜이 있어서 그 프로토콜이 제공해야 할 함수의 목록을 명시할 수 있다.
 
-For example, if we want to create our own iterable data structure and use it via `Enum` module, we need to implement all interface functions from the `Enumerable` protocol. Then we can work with our custom type using Enum module. This is used in Ecto and Phoenix to provide means for third-party libraries to extend a range of different supported types without changing original libraries.
+예를 들어서 iterable 자료 구조를 새로 만들고, `Enum` 모듈을 통해서 이를 사용하고 싶다면 `Enumerable` 프로토콜에 명시된 인터페이스 함수를 모두 구현하기만 하면 된다. 그러면 `Enum` 모듈을 사용해서 커스텀 타입을 다룰 수 있다. 엑토와 피닉스가 이 방식을 사용해서 원래 라이브러리를 변경하지 않으면서도 기존에 지원되는 타입을 서드 파티 라이브러리가 확장할 수 있도록 하고 있다.
 
-## 8. Added Lisp-style macros
+## 8. 리습 스타일 매크로 추가
 
-Erlang has C-like macros – so it’s just a dumb text generation. It also has a very cumbersome parse-transform engine. Parse-transform allows you to make a lot of stuff, but amount of efforts is huge and extension can be very brittle. I wrote quite a simple extension for Erlang once and never used it in production, because I couldn’t be sure it’d work after Erlang version is changed.
+얼랭에는 C 스타일 매크로가 있다. 즉 단순히 텍스트를 생성해주는 매크로다. 얼랭에는 다루기 매우 어려운 parse-transform 엔진도 있다. 이걸 사용하면 여러가지를 할 수 있기는 한데 매우 품이 많이 들 뿐 아니라, 만들어진 확장 프로그램도 변화에 매우 취약하다. 나도 얼랭용으로 매우 간단한 확장 프로그램을 만든 적이 있는데 프로덕션에서는 절대 사용하지 않았다. 얼랭 버전이 바뀐 후에도 작동할 지 확신을 가질 수 없었기 때문이다.
 
-Elixir is a totally different story. Actually, the core syntax is very small, and everything is built around gluing this small syntax with macros. Mostly any stuff which is ad-hoc in another languages, is a macro in Elixir, e.g. `if/else`, `case`, `defmodule`, `def`, etc. Actually, macros are the most important feature in Elixir which made possible all the DSL stuff in Phoenix and Ecto.
+엘릭서는 완전히 다르다. 사실 엘릭서 언어의 핵심 문법은 매우 작고, 이 작은 문법과 매크로를 사용해서 나머지 부분을 만들어낸 것이다. 다른 언어에서 특수한 문법인 것들, 예를 들면  `if/else`, `case`, `defmodule`, `def` 등을 엘릭서는 대부분 매크로로 구현한다. 사실 매크로는 엘릭서에서 가장 중요한 기능 중 하나로, 덕분에 피닉스와 엑토의 DSL이 만들어질 수 있었다. 
 
-## 9. Changed syntax
+## 9. 문법 변화
 
-You probably expect to see some rant how Elixir syntax is much better than the Erlang one. In fact, top-level Erlang syntax is more terse and allows to write very nice and readable code. You can express state machine in a pure Erlang syntax and it looks like a magic DSL. For example, here is Fibonacci implemented in both languages:
+엘릭서 문법이 얼랭 문법보다 훨씬 낫다는 불평이 나올 것이라고 예상했는가? 사실 얼랭 문법은 매우 간결하며, 코드를 읽기 쉽고 좋게 작성할 수 있도록 해준다. 순수한 얼랭 문법으로 상태 기계를 표현한 코드는 환상적인 DSL처럼 보인다. 예를 들어 두 언어로 각각 구현한 피보나치 수열을 보자.
 
 {% highlight erlang %}
 -module(fib).
@@ -176,10 +176,10 @@ defmodule Fib do
 end
 {% endhighlight %}
 
-Erlang code looks very similar to a normal mathematical notation, while Elixir is more verbose. But sometimes Erlang code is harder to change, because it uses semicolons and commas for statement separation. Also, Elixir derived syntax from Ruby, which made it very appealing for any Ruby developer.
+얼랭 코드는 일반적인 수학적 표기법과 매우 비슷하게 보이고, 엘릭서는 그보다 조금 더 장황하다. 하지만 얼랭 코드는 세미콜론과 콤마를 사용해서 구문을 구분하기 때문에 변경하기 더 어려울 때가 있다. 또한 엘릭서 문법은 루비의 영향을 받았기 때문에 루비 개발자에게는 매우 매력적이다. 
 
-When to use what?
+## 언제 어떤 언어를 사용해야 하는가?
 
-Elixir is compiled to Erlang byte-code and it tries very hard to provide cool features with zero overhead. So, it’s unlikely that writing Erlang code you will get faster execution. But if you write some “low-level” stuff or a common library and want to share it with the whole eco-system, it makes sense to write it in Erlang.
+엘릭서는 얼랭 바이트코드로 컴파일되고, 좋은 기능을 오버헤드 없이 제공하기 위해서 많은 노력을 기울인다. 따라서 얼랭 코드를 작성한다고 실행 속도가 더 빨라지지는 않을 것이다. 하지만 로우 레벨 기능이나 공용 라이브러리를 작성해서 얼랭VM 생태계 전체와 공유하고 싶다면 얼랭으로 작성하는 것이 이치에 맞을 것이다.
 
-On the contrary, if it’s some application with a decent amount of business logic and a lot of people should work on it – Elixir is a way to go.
+반면 비지니스 로직이 꽤 있고 많은 사람들이 작업해야 되는 어플리케이션이면 엘릭서가 좋을 것이다.
