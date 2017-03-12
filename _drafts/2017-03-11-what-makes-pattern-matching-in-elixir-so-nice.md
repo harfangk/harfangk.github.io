@@ -8,7 +8,9 @@ lang: en
 
 Many people pick pattern matching as one of the nicest features of Elixir. But it's hard to explain why or how it is nice - it's something experiential that arises from the combination of pattern matching and other elements of functional programming paradigm.
 
-In this post I will present a few examples of pattern matching in Elixir to describe why it is such a great feature. The target audience of this post is people with experience in object-oriented programming (OOP) but without much exposure to functional programming (FP). Let's get started.
+In this post I will present a few examples of pattern matching in Elixir to describe why it is such a great feature. The target audience of this post is people with experience in object-oriented programming (OOP) but without much exposure to functional programming (FP). *It's not written to compare pattern matching in Elixir with pattern matching in other languages.*
+
+Let's get started.
 
 ## Pattern Matching? What Is That?
 
@@ -38,7 +40,7 @@ This is a function in `Enum` module from Elixir core library. As its name sugges
 
 Let's look at the first case. `{:ok, 0}` matches to only one tuple: the one with `:ok` as the first element and `0` as the second element. 
 
-The second case `{:ok, count}` matches to all tuples that have `:ok` as the first element, and any value other than `0` as the second element. At the same time, it binds that second element to a variable called `count`. 
+The second case `{:ok, count}` matches to all two-element tuples that have `:ok` as the first element, except for `{:ok, 0}`, which would have been matched in the previous case and would never reach this case. At the same time, the case binds the second element to a variable called `count`. 
 
 The third case `{:error, _}` matches to all two-element tuples with `:error` as the first element, regarldess of the value of the second element.
 
@@ -54,9 +56,9 @@ Third, it's binding the value it accessed from the data. This happens in the sec
 
 These three operations together are simply called `destructuring` or `deconstructing` in FP.
 
-Fourth, it's specifying how to respond to matched cases. Each case is followed by subsequent operations, which have access to the variable you bound through destructuring.
+Fourth, it's specifying how to respond to matched cases. Each case is followed by subsequent operations, which can use the variable you bound through destructuring.
 
-So pattern matching can specify the data structure you want, extract values from it, then pass those extracted values to other functions. These are operations that you do over and over again to implement more abstract logic. Pattern matching allows an incredibly succint way to efficiently write those codes with little boilerplate code.
+In summary, pattern matching can specify the data structure you want, extract values from it, then pass those extracted values to other functions. These are operations that you do over and over again to implement more abstract logic. Pattern matching allows an incredibly succint way to efficiently write those codes with little boilerplate code.
 
 But it doesn't stop there.
 
@@ -64,7 +66,7 @@ But it doesn't stop there.
 
 ## Multiple Clause Functions for Code Organization
 
-A useful syntactic sugar for pattern matching is multiple clause function heads. Actually, the full definition of the `Enum.random/1` function I've introduced above looks like this:
+A useful syntactic sugar for pattern matching is multiple clause functions. Actually, the full definition of the `Enum.random/1` function I've introduced above looks like this:
 
 {% highlight elixir %}
 @spec random(t) :: element | no_return
@@ -90,7 +92,7 @@ end
 
 The first two lines are type specifications for the function, so they are not relevant for this post. Let's look at the rest of the function definition.
 
-There are two function definitions with identical names. It is a syntactic sugar to separate pattern matching cases into multiple clause function definition. In fact, the above function definition is equivalent to the following code:
+There are two function definitions with identical names. It is a syntactic sugar to separate pattern matching cases into multiple clause function. In fact, the above function definition is equivalent to the following code:
 
 {% highlight elixir %}
 @spec random(t) :: element | no_return
@@ -115,9 +117,9 @@ def random(enumerable) do
 end
 {% endhighlight %}
 
-As you can see, the first pattern matching was split into different function heads. So what's so great about this seemingly mundane feature? Multiple clause function heads are great because they provide a visually discernible way to break down functions into smaller parts that are easier to understand and maintain. 
+If you compare the two versions, you can see that the outermost pattern matching was split into different function clauses. So what's so great about this seemingly mundane feature? Multiple clause function heads are great because they provide a visually discernible way to break down functions into smaller parts. Such a separation reduces the amount of code you must hold in your head to understand the function, making it much easier to write and understand functions.
 
-Remember that pattern matching is already being used to extract data, manipulate control flow, and guarantee an output. On top of that, it can be also used for structuring the codebase. 
+Remember that pattern matching is already being used to destructure data and manipulate control flow. On top of that, it can be also used for structuring the codebase. 
 
 ## Recursion and Pattern Matching
 
@@ -145,13 +147,13 @@ def reverse(enumerable) do
 end
 {% endhighlight %}
 
-Notice multiple function heads make the base case, the first three cases in this example, more discernible. They also reduce the amount of code you must hold in your head to understand the function, making it much easier to write and understand functions.
+Notice how multiple clauses make the base case, the first three cases in this example, more discernible. Considering that understanding the base case is crucial to understanding a recursive function, such a visual assistance through pattern matching is definitely helpful.
 
 ## Pattern Matching Is in the Leading Role
 
 But if you actually think about it, none of the capabilities of pattern matching I've described here is new. 
 
-Switch statement has existed for decades in imperative languages for manipulating control flow. Destructuring is now supported in OO languages that have more aggressively introduced elements of FP, such as Ruby, Swift, and ES6 JavaScript. Still, pattern matching in those languages have limited power and is relegated to a secondary role because its incompatibility with some OO principles.
+Switch statement has existed for decades in imperative languages for manipulating control flow. Destructuring is now supported in OO languages that have more aggressively introduced elements of FP, such as Ruby, Swift, and ES6 JavaScript. Still, pattern matching in those languages have limited power and is relegated to a secondary role because its incompatibility with some OO principles and methodologies.
 
 In Elixir, pattern matching plays the leading role. The entire language feels like it's built around pattern matching, allowing it to show its full potential. And I think that's what makes using pattern matching feel so nice in Elixir. 
 
@@ -159,7 +161,7 @@ In practice, this means that you can think about everything in terms of pattern 
 
 ## Conclusion
 
-The power of pattern matching in Elixir cannot be described just in terms of its own capabilities. It's the harmony between the simple functional elements of the language and the tool that makes it such a pleasant experience. If you haven't tried Elixir, I recommend you to at least take a look at it to see how pattern matching works in it.
+The experience of using pattern matching in Elixir cannot be described just in terms of its own capabilities. It's the harmony between the functional elements of the language and the tool that makes it such a pleasant experience. If you haven't tried Elixir, I recommend you to at least take a look at it to see how pattern matching works in it.
 
 ---
 
@@ -183,4 +185,4 @@ Pattern matching also allows you to explicitly state how  you want to process th
 
 Here's one way that could help you wrap your head around this difference. Switch statement in OOP is about instructing what to do in certain situations. This is characteristic of its imperative heritage. In contrast, pattern matching in FP is about establishing rules for handling different cases. This is characteristic of its declarative heritage.
 
-Unlike dynamically typed languages like Elixir, statically typed languages provide additional benefits to pattern matching. Compiler ensures that cases cover all possible inputs, that they are not redundant, and that they do not try to match against impossible data types. The tradeoff is that the code gets more complicated as the programmer needs to know and understand ever-increasing number of type interfaces.
+Unlike dynamically typed languages like Elixir, statically typed languages provide additional benefits to pattern matching. Compiler ensures that cases cover all possible inputs, that they are not redundant, and that they do not try to match against impossible data types. The tradeoff is that the code gets more complicated and require programmers to know and understand ever-increasing number of type interfaces.
