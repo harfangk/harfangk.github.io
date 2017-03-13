@@ -199,6 +199,20 @@ Notice how multiple function heads make the base case, the first three cases in 
 
 이 예시에서 재귀 함수의 베이스 케이스는 첫 세 케이스입니다. Multiple clauses function을 사용하면 베이스 케이스가 더 명확히 분리됩니다. 재귀 함수를 이해하려면 베이스 케이스를 이해하는 것이 필수적임을 생각해보면, 패턴 매칭이 이를 시각적으로 도와준다는 것은 도움이 됩니다.
 
+## 간단한 데이터 타입
+
+As a dynamically typed language, Elixir has limited support for building an elaborate type system. You can define custom types, specify function signatures, and run static code analysis using tools like [dialyzer](http://www.erlang.org/doc/man/dialyzer.html), but it's not as powerful as that of statically typed languages like Haskell. 
+
+엘릭서는 동적 타입 언어인기 때문에 정교한 타입 시스템을 만들기 어렵습니다. 커스텀 타입을 정의하고, 함수 시그니처를 명시하고, [dialyzer](http://www.erlang.org/doc/man/dialyzer.html) 같은 정적 코드 분석 툴을 사용할 수 있지만, 하스켈 같은 정적 타입 언어에는 비할 수 없습니다.
+
+But the tradeoff is that Elixir is much simpler to read and write, as Elixir programmers mostly use the basic types provided by the language. In FP, the syntax for destructuring a data structure is identical to the syntax for creating it. This means that you just need to know several collection types to work with Elixir program using pattern matching. In contrast, statically typed languages require you to learn ever-increasing number of custom types and their interfaces. 
+
+하지만 대신 엘릭서는 훨씬 간단하게 읽고 작성할 수 있습니다. 엘릭서 프로그래머들은 대부분 언어에서 제공하는 기본 타입만을 사용합니다. 함수형 언어에서 데이터 구조를 디스트럭쳐링하는 문법과 만드는 문법이 동일하다는 것을 고려하면, 이는 엘릭서 프로그램에서 패턴 매칭을 사용하기 위해서는 대여섯가지의 콜렉션 타입만 알고 있어도 된다는 것을 의미합니다. 반면 정적 타입 언어를 사용하려면 점점 늘어나는 커스텀 타입과 해당 타입에 대한 인터페이스를 배워야만 합니다.
+
+So when working with Elixir, you just need to hold only a small amount of context about type interfaces in your mind. This makes it a effortless to write and reason about Elixir programs. 
+
+즉, 엘릭서를 사용할 때는 머리 속에 타입 인터페이스에 대한 대량의 정보를 담고 있을 필요가 없습니다. 덕분에 엘릭서 프로그램을 매우 간단하게 작성하고 이해할 수 있습니다.
+
 ## 주연을 맡은 패턴 매칭
 
 But if you actually think about it, none of the capabilities of pattern matching I've described here is new. 
@@ -215,7 +229,7 @@ In Elixir, pattern matching plays the leading role. The entire language feels li
 
 In practice, this means that you can think about everything in terms of pattern matching. Destructuring? Use pattern matching. Control flow? Use pattern matching. Code organization? Use pattern matching. It creates an uninterrupted flow of writing and organizing code without stopping to think about which tool to use for each particular case. 
 
-이는 실제적으로는 모든 것을 패턴 매칭이라는 관점에서 생각할 수 있다는 의미입니다. 디스터럭쳐링? 패턴 매칭으로 해결. 제어 흐름? 패턴 매칭으로 해결. 코드 구성 정리? 패턴 매칭으로 해결. 덕분에 어떤 상황에서 어떤 도구를 사용해야할 지 고민할 필요 없이, 하나로 연결된 끊임없는 흐름 상에서 코드를 작성하고 관리할 수 있습니다.
+이는 실제적으로는 모든 것을 패턴 매칭이라는 관점에서 생각할 수 있다는 의미입니다. 디스트럭쳐링? 패턴 매칭으로 해결. 제어 흐름? 패턴 매칭으로 해결. 코드 구성 정리? 패턴 매칭으로 해결. 덕분에 어떤 상황에서 어떤 도구를 사용해야할 지 고민할 필요 없이, 하나로 연결된 끊임없는 흐름 상에서 코드를 작성하고 관리할 수 있습니다.
 
 ## 마무리
 
@@ -225,24 +239,40 @@ The power of pattern matching in Elixir cannot be described just in terms of its
 
 ---
 
-## No Encapsulation and More Explicit Control Flow 
+## 캡슐화는 없고, 제어 흐름은 명시적으로
 
 Destructuring gives you a free access into the internal values of data structures, which might look like a total disregard for encapsulation. It is. Except that encapsulation does not exist in FP.
 
-One of the key reasons for encapsulation in OOP is to control who has access to the data. Only the object that holds the data is permitted to read and write those data. Any other entity must request that object to handle the data. 
+디스트럭쳐링을 통해서 데이터 구조 내부의 값에 자유롭게 접근할 수 있는데, 이는 캡슐화를 완전히 위반한 것처럼 보일 수도 있습니다. 사실 맞습니다. FP에는 캡슐화라는 개념이 없다는 것만 제외하면요.
+
+One of the key reasons for encapsulation in OOP is to control who has access to the data. Only the object that holds the data is permitted to read and write those data. Any other entity must request that object to handle the data. This is to ensure consistency and integrity of data.
+
+OOP에서 캡슐화의 가장 중요한 목적 중 하나는 데이터 접근 권한을 제한하는 것입니다. 데이터를 보유한 객체만이 해당 데이터를 읽고 쓸 수 있는 권한을 가집니다. 그 외에는 해당 객체에 요청을 해야만 그 데이터를 다룰 수 있습니다. 데이터의 온전함과 일관성을 보증하기 위해서입니다. 
 
 FP, in contrast, solves the writing permission problem in a completely different way. All data are immutable, so no one can write to them. 
 
+반면 FP는 쓰기 권한 문제를 완전히 다른 방식으로 해결합니다. 모든 데이터는 변경이 불가능하기 때문에 아무도 쓰기 권한을 가지고 있지 않습니다.
+
 Since there's no more need to control writing permission, there's no need to encapsulate data within objects for access control. So FP separates them into data types and modules. In OOP terms, that could be described as splitting complex objects into simpler data transfer objects and service objects. 
+
+쓰기 권한을 제한할 필요가 없어지면 접근 권한 관리를 위해 데이터를 객체 안에 캡슐화할 필요도 없어집니다. 따라서 FP는 객체에 캡슐화되어 있었을 데이터와 메서드를 데이터 타입과 함수 모듈로 분리합니다. OOP 용어로 표현하자면 복잡한 객체를 보다 단순한 data transfer object와 service object로 분리하는 셈입니다.
 
 As for reading permission, each FP language handles it differently. Dynamically typed languages, such as Erlang/Elixir and Closure, tend to stick to the types provided by the language. Programmers know how to handle those basic types, which means they know how to interface with almost all data. In other words, programmers have something akin to universal reading permission in those languages.
 
+읽기 권한의 경우 각 FP 언어마다 다른 방식으로 다룹니다. 얼랭/엘릭서, 클로져 등의 동적 타입 언어는 언어에서 기본적으로 제공하는 데이터 타입을 사용해서 대부분의 데이터를 대룹니다. 프로그래머들은 당연히 이런 기본 데이터 타입을 다룰 줄 아는 만큼, 거의 대부분의 데이터에 접근할 수 있다고 볼 수 있습니다. 달리 말해 해당 언어에서는 프로그래머들이 완전한 읽기 권한을 가지고 있는 셈입니다.
+
 On the other hand, statically typed languages, such as Haskell/ML family languages, leverage powerful custom types. Programmers create their own types that are suited to the logic they are implementing. So unless you know the interface for those types, you cannot read data from those types. This works as practical reading permission.
+
+반면 하스켈과 ML 계통 언어처럼 정적 타입 언어는 커스텀 타입을 활용하는 강력한 타입 시스템을 갖추고 있습니다. 프로그래머들은 구현하는 로직에 적합한 자신만의 타입을 정의합니다. 그리고 그런 커스텀 타입들의 인터페이스를 모르면 해당 타입의 자료를 읽을 수가 없습니다. 이는 읽기 권한을 실질적으로 제한합니다.
 
 Multi-paradigm languages that leverage elements from both OOP and FP paradigms go around the encapsulation problem in different ways. Scala provides extractor objects for defining interfaces for destructuring operation without compromising object encapsulation. Ruby core library provides convenient syntax and methods for destructuring commonly used data objects, but separates control flow from them. Swift limits destructuring to tuples, while supporting Swift-specific features such as unwrapping optionals or validating type casting. ES6 JavaScript provides powerful destructuring functionality, but separates it from control flow.
 
+OOP와 FP 양쪽의 요소를 모두 활용하는 멀티패러다임 언어의 경우 캡슐화 문제를 각기 다른 방식으로 해결합니다. 스칼라는 객체 캡슐화를 유지하면서도 디스트럭쳐링을 할 수 있도록 extractor object를 제공합니다. 루비는 자주 사용되는 데이터 객체를 디스트럭쳐링할 수 있는 간편한 문법을 코어 라이브러리에서 제공하되, 흐름 제어는 분리합니다. 스위프트는 디스트럭쳐링을 튜플에만 제한하되, 옵셔널 언래핑이나 타입 캐스팅 가능여부 확인 등 스위프트에 특화된 기능을 지원합니다. ES6 자바스크립트는 강력한 디스트럭쳐링 기능을 지원하지만 제어 흐름은 거기서 분리해두었습니다.
+
 Pattern matching also allows you to explicitly state how  you want to process the data based on its structure. This might look like manual method dispatch in OOP, which means using control flow statements against the type of an object to choose what to do with it. Such a practice is frowned upon in OOP, which prefers delegating such a choice to objects using techniques like [function overloading](https://www.wikiwand.com/en/Function_overloading) and [subtype polymorphism](https://www.wikiwand.com/en/Subtyping). In contrast, FP prefers explicitly handling this at function level.
 
-Here's one way that could help you wrap your head around this difference. Switch statement in OOP is about instructing what to do in certain situations. This is characteristic of its imperative heritage. In contrast, pattern matching in FP is about establishing rules for handling different cases. This is characteristic of its declarative heritage.
+또한 데이터 구조에 따라서 데이터를 어떻게 처리할 지 패턴 매칭을 사용해서 명시적으로 정의할 수 있습니다. 이는 OOP의 수동 메서드 디스패치, 즉 객체의 타입에 스위치문을 돌려서 수동으로 실행할 메서드를 지정하는 것과 유사하게 보일 수도 있습니다. 이는 OOP에서 사용하면 비판 받는 방식이죠. OOP에서는 [함수 오버로드](https://www.wikiwand.com/ko/%ED%95%A8%EC%88%98_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C)나 [서브타입 다형성](https://www.wikiwand.com/ko/%EC%83%81%EC%86%8D_(%EA%B0%9D%EC%B2%B4_%EC%A7%80%ED%96%A5_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)) 등의 기법을 사용해서 메서드 선택을 객체에 위임하는 것을 선호합니다. 반면 FP는 이를 함수 수준에서 명확히 다루는 것을 선호합니다.
 
-Unlike dynamically typed languages like Elixir, statically typed languages provide additional benefits to pattern matching. Compiler ensures that cases cover all possible inputs, that they are not redundant, and that they do not try to match against impossible data types. The tradeoff is that the code gets more complicated and require programmers to know and understand ever-increasing number of type interfaces.
+But you should think about it in a different way. Switch statement in OOP is about instructing what to do in certain situations. This is characteristic of its imperative heritage. In contrast, pattern matching in FP is about establishing rules for handling different cases. This is characteristic of its declarative heritage.
+
+하지만 이 둘은 다른 방식으로 접근해야 합니다. OOP의 스위치문은 특정 상황에서 무엇을 할 지 지시하는 것으로, 명령형 언어 관점에서 봐야합니다. 반면 FP의 패턴 매칭은 각 케이스마다 규칙을 정립하는 것으로, 선언형 언어 관점에서 봐야합니다.
