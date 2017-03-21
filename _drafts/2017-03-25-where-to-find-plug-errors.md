@@ -1,8 +1,8 @@
 ---
 layout: post
-ref: where-to-find-plug-errors
-date: 2017-02-25 00:00:00 +0900
-title: Where to Find Plug Errors
+ref: how-to-display-plug-errors
+date: 2017-03-25 00:00:00 +0900
+title: How to Display Plug Errors
 lang: en
 ---
 
@@ -10,11 +10,11 @@ This post is aimed at those who are just starting to use `Plug`, a great web mid
 
 ## TL;DR
 
-If you want to access various error messages from `Plug` that do not show up in `Logger`, `use Plug.Debugger` will make those failed requests appear. Check out [Plug.Debugger](https://hexdocs.pm/plug/Plug.Debugger.html#content).
+If you want to access various error messages from `Plug` that do not show up in `Logger`, `Plug.Debugger` will make those failed requests appear. Check out [Plug.Debugger](https://hexdocs.pm/plug/Plug.Debugger.html#content).
 
 ## 404 Error Message Not Found
 
-While building my toy app that received JSON through HTTP POST requests, I noticed an interesting behavior. When I send a request with malformed JSON payload, the request would magically banish - without any trace in logger or server.
+While building an app that received JSON through HTTP POST requests, I noticed an interesting behavior. When I send a request with malformed JSON payload, the request would magically banish without any trace in either the log or the server.
 
 So when I send a request with malformed JSON like:
 
@@ -24,13 +24,13 @@ So when I send a request with malformed JSON like:
 }
 {% endhighlight %}
 
-The server would respond with `500 Internal Server Error` without any message. It logged no error whatsoever, either.
+The server would respond with `500 Internal Server Error` without displaying or logging internal error message.
 
-After some digging, I found out that the sort of error I was looking for - `Plug.Parsers.ParseError` - is not logged by default. That makes sense - I don't want my log to be flooded with error messages about bad requests.
+After some digging, I found out that the sort of error I was looking for - `Plug.Parsers.ParseError` - is not logged by default. That makes sense - I don't want my log to be flooded with error messages about potentially unlimited number of bad requests. But what if I actually wanted to check the error message?
 
 The solution is to use `Plug.Debugger` in the module that uses `Plug.Router`.
 
-The following is part of the code for web interface in my toy app. Notice the `use Plug.Debugger` I included here. 
+The following is part of the code for the web interface of my app. Notice the `use Plug.Debugger` I included here. 
 
 {% highlight elixir %}
 defmodule UrlShortener.Web do
