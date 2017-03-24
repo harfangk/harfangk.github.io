@@ -14,7 +14,7 @@ Here's an example.
 
 {% highlight elixir %}
 defmodule Foo do
-  import Enum
+  import Enum, only: [any?: 2]
   
   def bar, do: IO.inspect(&any?/2) 
   def baz, do: __ENV__.functions |> IO.inspect()
@@ -24,14 +24,7 @@ iex> Foo.bar
 &Enum.any?/2
 iex> Foo.baz
 [{Enum,
-  [all?: 1, all?: 2, any?: 1, any?: 2, at: 2, at: 3, chunk: 2, chunk: 3,
-   chunk: 4, chunk_by: 2, concat: 1, concat: 2, count: 1, count: 2, dedup: 1,
-   dedup_by: 2, drop: 2, drop_every: 2, drop_while: 2, each: 2, empty?: 1,
-   fetch: 2, fetch!: 2, filter: 2, filter_map: 3, find: 2, find: 3,
-   find_index: 2, find_value: 2, find_value: 3, flat_map: 2, flat_map_reduce: 3,
-   group_by: 2, group_by: 3, intersperse: 2, into: 2, into: 3, join: 1, join: 2,
-   map: 2, map_every: 3, map_join: 2, map_join: 3, map_reduce: 3, max: 1,
-   max: 2, max_by: 2, max_by: 3, ...]},
+  [any?: 2]},
  {IEx.Helpers,
   [c: 1, c: 2, cd: 1, clear: 0, flush: 0, h: 0, i: 1, l: 1, ls: 0, ls: 1, nl: 1,
    nl: 2, pid: 1, pid: 3, pwd: 0, r: 1, recompile: 0, respawn: 0, v: 0, v: 1]},
