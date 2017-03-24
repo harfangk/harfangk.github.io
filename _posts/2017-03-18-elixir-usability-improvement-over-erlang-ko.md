@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: elixir-usability-improvement-over-erlang
-date: 2017-03-18 00:00:00 +0900
+date: 2017-03-24 00:00:00 +0900
 title: 엘릭서에서 얼랭보다 사용성이 개선된 9가지 측면
 lang: ko
 ---
