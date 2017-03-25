@@ -172,7 +172,7 @@ fib(N) -> fib(N - 2) + fib(N - 1).
 defmodule Fib do
   def fib(1), do: 1
   def fib(2), do: 1
-  def fib(n) do: fib(n - 2) + fib(n - 1)
+  def fib(n), do: fib(n - 2) + fib(n - 1)
 end
 {% endhighlight %}
 
