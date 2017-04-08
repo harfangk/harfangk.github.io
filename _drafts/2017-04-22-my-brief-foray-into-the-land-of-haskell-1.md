@@ -8,20 +8,20 @@ lang: en
 
 ## The Scary, Scary Land of Haskell
 
-Haskell. I think few other programming languages invoked the same intensity of dreadfulness in me as Haskell did. After all, it is a language known for being arcane and unusual. Still, I love trying out new and difficult stuff. So I've been eyeing for an opportunity to venture into the land of Haskell for a while.
+Haskell. I think few other programming languages invoked the same level of dreadfulness in me as Haskell did. After all, it is a language known for being arcane and unusual. Still, I love trying out new and difficult stuff. So I've been eyeing for an opportunity to venture into the land of Haskell for a while.
 
 I kept looking for a way. 
 
 ## Setting Up the Plan
 
-One of the most common complaints about Haskell is that it's so hard to learn. As I researched about how to learn it, I could identify two causes:
+One of the most common complaints about Haskell is that it's so hard to learn. As I researched about why it was so hard, I could identify two causes:
 
 * Haskell is disparate from mainstream imperative languages.
 * Resources for learning Haskell are terrible in terms of being beginner-friendly.
 
-I've seen the same pattern in universities. A professor is knowledgeable in her area but is terrible at teaching because she received no training in pedagogy. And I've already suffered from such professors in universities, so I wasn't keen on subjecting myself to the same kind of torture. I had to find a good guidance.
+I've seen the same pattern in universities. A professor is knowledgeable in her area but is terrible at teaching because she received no training in pedagogy. And I've already suffered from such professors in universities, so I wasn't keen on subjecting myself to the same kind of torture again. I had to find a good guidance.
 
-Then I came upon an article titled [Functional Education](http://bitemyapp.com/posts/2014-12-31-functional-education.html) by @bitemyapp. The author discussed the problems in learning functional programming, and reviewed many existing resources for learning Haskell. I did not, and still do not, know enough to evaluate his reviews. But he sounded rational enough that I decided to adopt his recommendation.
+Then I came upon an article titled [Functional Education](http://bitemyapp.com/posts/2014-12-31-functional-education.html) by @bitemyapp. The author discussed the problems in learning functional programming, and reviewed many existing resources for learning Haskell. I did not, and still do not, know enough to evaluate his reviews. But he sounded rational enough that I decided to follow his recommendation.
 
 His recommendation was to go for Brent Yorgey's [cis194 course](http://www.seas.upenn.edu/~cis194/spring13/lectures.html) first and then [Data61 course](https://github.com/data61/fp-course).
 
