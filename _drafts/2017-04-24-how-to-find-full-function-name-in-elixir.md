@@ -8,9 +8,9 @@ lang: en
 
 Sometimes you want to know the full name of an imported function, including the name of the module it is defined in. 
 
-Passing the captured function name to `IO.inspect/1` will reveal its full name.
+Capture the function name with `&` and pass it to `IO.inspect/1` to reveal its full name.
 
-Another way is to rummage through `__ENV__.functions` which lists all the modules and functions loaded into your compile time environment. Information about `__ENV__` can be found [here](https://hexdocs.pm/elixir/Macro.Env.html).
+Another way is to rummage through `__ENV__.functions/0` which lists all the modules and functions loaded into your compile time environment. Information about `__ENV__` can be found [here](https://hexdocs.pm/elixir/Macro.Env.html).
 
 Here's an example.
 
@@ -41,6 +41,6 @@ iex> Foo.baz
    ...]}]
 {% endhighlight %}
 
-## Don't Make Your Modules Import Too Many Modules
+## Don't Import or Alias Too Many Modules
 
-If you find yourself needing to do that, you've probably imported or aliased too many modules. It'd be best to avoid getting into such a situation in the first place.
+If you find yourself needing to do that, you've probably imported or aliased too many modules. It'd be best to avoid getting into such a situation by splitting modules accordingly.
