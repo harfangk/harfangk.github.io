@@ -8,8 +8,6 @@ lang: ko
 
 ## 뭔가 무서운 하스켈 나라
 
-I think few other programming languages evoked as much fear in me as Haskell did. After all, it is a language known for being arcane and unusual. Still, it seemed like an interesting language to learn so I've been eyeing for an opportunity to venture into the land of Haskell for a while.
-
 하스켈은 뭔가 이름부터 이상해서 배우기 겁이 나는 언어입니다. 워낙 배우기 어렵고 특이하기로 유명하기도 하니까요. 그래도 하스켈을 배우면 프로그래밍에 대해 더욱 폭넓게 이해할 수 있다고 다들 그래서 하스켈 나라를 방문할 기회는 항상 눈독들이고 있었습니다. 
 
 ## 계획 수립!
@@ -39,7 +37,7 @@ I think few other programming languages evoked as much fear in me as Haskell did
 
 물론 하스켈을 처음 배우려고 할 때는 제가 이런 요소들을 이미 갖추고 있다는 것을 모르고 있었습니다. 어쩌다보니 점이 연결된 셈이라고 할 수 있겠죠.
 
-## CIS194 (SP 13) 하세요 굳굳
+## CIS194 (SP 13) 추천합니다
 
 강의에서 가장 마음에 드는 점은 그 간결함인데, 너무 짧지도 너무 번잡하지도 않은 설명이 좋았습니다. 게다가 강사가 [Learn You a Haskell for Great Good](http://learnyouahaskell.com/) 책과 [Real World Haskell](http://book.realworldhaskell.org/) 책에서 강의 내용에 관련된 챕터를 권장 과제로 내주었는데, 강의 내용이 너무 짧다고 느껴질 때는 해당 책의 챕터를 읽으면서 보다 꼼꼼하고 천천히 내용을 익힐 수 있었습니다. 핵심 내용을 간결하게 전달하고 이를 보조할 수 있는 구체적인 자료를 제공하는 것은 제가 가장 좋아하는 방식입니다.
 
