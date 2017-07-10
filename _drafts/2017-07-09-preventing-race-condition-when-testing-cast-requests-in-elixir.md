@@ -72,7 +72,7 @@ access to callback functions. In fact, most modules keep their callback
 functions private. In that case there is no other way but to test both the
 message passing and callback handling in a single test case.
 
-## Inconclusive Afterthoughts
+## An Afterthought
 
 By design, each BEAM process could be running on separate machines. This means
 that message passing among BEAM processes should be able to deal with classic
