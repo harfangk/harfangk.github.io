@@ -121,6 +121,8 @@ it's actually an enjoyable experience.
 
 ## What Did I Learn
 
+### The Meaning of Program
+
 As a newcomer into software development, in particular web development, I study
 everyday to get better at this field. Still, the more I study, the more there
 is to learn. Horizontally, there's an ever-increasing number of different ways
@@ -150,6 +152,8 @@ topics would be incomplete at best.
 This new way of thinking about program was the most valuable lesson I learned
 from reading this book.
 
+### Impossibility of Writing a Bug-Free Program
+
 Discussion about undecidable problem also gave me answers to some lingering
 questions I had. For example, as I wrote tests for my Ruby program, I thought
 about how many tests I would have to write until I could trust that my program
@@ -160,14 +164,37 @@ my question is a definitive no.
 
 When I first learned Haskell, I was thrilled by the slogan that "if it
 compiles, it works". They said that the compiler guarantees that there'd be no
-error in the program. But then how come it was still possible to have runtime
-in errors in Haskell? I shrugged the question away, thinking that no system is
-perfect. Now I have theoretical proof that such a guarantee is impossible. So
-a rigorous type system can drastically reduce a category of errors, but it
+error in the program. But then it was still possible to have runtime errors in
+Haskell. How come? I shrugged the question away, just thinking that no system
+is perfect. Now I have theoretical proof that such a guarantee is impossible.
+So a rigorous type system can drastically reduce a category of errors, but it
 cannot eliminate all errors.
 
-That was quite a depressing lesson. So I am forever bound to work with
-softwares that are doomed to eventual uncertainty? So I would never know
-beforehand if this thing would work or blow up in my face in 10 seconds or
-after processing 65,536 requests? I could have just continued working in
-international diplomacy if I wanted to work with such uncertainties.
+So all the best practices for making bug-free software are doomed to failure.
+While I do find the Sisyphean endeavor tragically beautiful in some way, I do
+find it a bit disappointing and depressing. I hoped for something more definite
+in software development than in my previous field of international security.
+I can accept it as a fact of life, but I do feel like when that cake I was
+promised to turned out to be a lie.
+
+### First Among Equal Programming Languages
+
+I had read that most programming languages are Turing complete, which meant
+that any language could be used to do what another one could do, but I didn't
+give much thought to it. That statement started to make more sense after I've
+read this book. After seeing that vastly different systems like a Turing
+machine, lambda calculus, rule 110 system, or other still more weird systems
+are equivalent in power, I found it easier to accept that Smalltalk and Haskell
+are equivalent in power. This meant that all those arguments about which
+language is more powerful are nothing more than waste of time.
+
+But if they are all equivalent, what other technical criteria should we use to
+choose a language to use in the next project? For some projects, there exists
+just one reasonable choice. For example, C/C++ is the only reasonable language
+for console game development. JavaScript is the only language that runs on
+a web browser. For most other situations, however, there are a lot of languages
+to choose from. I wonder if there eixst some good criteria that can prevent the
+decision from relying on personal preferences or operational requirements like
+the ease of hiring developers in the local area.
+
+
