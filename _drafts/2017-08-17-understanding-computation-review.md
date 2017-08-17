@@ -116,24 +116,24 @@ that cannot be generally solved by universal Turing machine, which is the most
 powerful computer we can currently build.
 
 That's a lot of complex topics to cover in a book that's slightly longer than
-300 pages. Still, because of the way the author lays down it all in the book,
-it's actually an enjoyable experience.
+300 pages. Still, the author lays it all out in such a concise manner that you
+can understand the topics to the extent that the next section requires you
+to.
 
 ## What I Learned
 
 ### The Meaning of Program
 
-As a newcomer into software development, in particular web development, I study
-everyday to get better at this field. Still, the more I study, the more there
-is to learn. Horizontally, there's an ever-increasing number of different ways
-of doing things. There are new cool languages, yet another JavaScript
-framework, new ways of deployng to AWS, better ways of writing API,
-and so on. Then again, vertically, there are abstraction layers that reach
-deeper than nine circles of Hell. I write in high level language, which gets
-parsed, then compiled to bytecode, which is converted to machine code, that
-gets executed at CPU, which is built with gates, and so on. Why, just today
-I learned that below TCP/IP lie 7 layers of Open Systems Interconnection.
-I guess even nine circles are not deep enough for this field.
+As a newcomer into software development, I noticed that the more I study, the
+more there is to learn in this field. Horizontally, there's an ever-increasing
+number of different ways of doing things. There are new cool languages, yet
+another JavaScript framework, new ways of deployng to AWS, better ways of
+writing API, and so on. Then again, vertically, there are abstraction layers
+that reach deeper than nine circles of Hell. I write in high level language,
+which gets parsed, then compiled to bytecode, which is converted to machine
+code, that gets executed at CPU, which is built with gates, and so on. Why,
+just today I learned that below TCP/IP lie 7 layers of Open Systems
+Interconnection. I guess even nine circles are not deep enough for this field.
 
 Because I was overwhelmed by the number of things to learn, I couldn't even
 think about what all these things aim to achieve in the end. The book taught me
