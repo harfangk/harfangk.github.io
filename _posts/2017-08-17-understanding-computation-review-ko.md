@@ -41,9 +41,9 @@ machine)를 다룹니다. 글이 간결하면서도 쉽고 재밌게 읽을 수 
 사용함으로써 소프트웨어 개발자들이 가장 쉽게 이해할 수 있는 방식으로 추상적
 개념을 보여주는 셈입니다.
 
-예를 들어 저자가 operational semantics 개념을 설명하면서 프로그램이 최종적인
-결과값에 도달할 때까지 평가(evaluate)되고 축약(reduce)되는 과정을 보여줄 때,
-다음과 같은 방식으로 구현된 코드를 매번 제시합니다.
+예를 들어 저자가 조작적 의미론(operational semantics) 개념을 설명하면서
+프로그램이 최종적인 결과값에 도달할 때까지 평가(evaluate)되고 축약(reduce)되는
+과정을 보여줄 때, 다음과 같은 방식으로 구현된 코드를 매번 제시합니다.
 
 ```ruby
 >> Machine.new(
@@ -101,7 +101,7 @@ end
 개념을 단순히 순차적으로 소개하는 것이 아니라 일종의 서사 구조를 갖추고
 있습니다. 
 
-처음에는 operational semantics나 denotational semantics 등 프로그램의 의미를
+처음에는 조작적 의미론(operational semantics)이나 표시적 의미론(denotational semantics) 등 프로그램의 의미를
 이해하기 위한 방법론을 소개합니다. 이어서 프로그램을 실행할 수 있는 기본적인
 추상 기계, 즉 유한 오토마타(finite automata)와 푸시다운 오토마타(pushdown
 automata) 같은 개념을 설명하고, 이런 기계가 실행할 수 있는 형식으로 프로그램을
