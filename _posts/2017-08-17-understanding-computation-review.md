@@ -167,15 +167,15 @@ compiles, it works". They said that the compiler guarantees that the program
 would contain no errors. But then it was still possible to have runtime errors
 in Haskell. How come? I shrugged the question away, just thinking that no
 system is perfect. Now I have theoretical understanding that such a guarantee
-is impossible. So even though a rigorous type system can drastically reduce
-a category of errors, it still cannot eliminate all errors.
+is fundamentally impossible. So even though a rigorous type system can
+drastically reduce a category of errors, it still cannot eliminate all errors.
 
-So all the best practices for making bug-free software were futile by nature.
-While I do find that Sisyphean endeavor tragically beautiful in some way, I do
-find it a bit disappointing and depressing. I hoped for something more definite
-in software development than in my previous field of international security.
-I can accept it as a fact of life, but I do feel as if that cake, which I was
-promised with, has turned out to be a lie.
+So all the techniques and best practices for making bug-free software were
+futile by nature. While I do find this Sisyphean endeavor tragically beautiful
+in some way, I find it a bit disappointing and depressing. I hoped for
+something more definite in software development than in my previous field of
+international security. I can accept it as a fact of life, but I feel as if
+that cake, which I was promised with, has turned out to be a lie.
 
 ### First Among Equal Programming Languages
 
@@ -204,19 +204,17 @@ that can provide the answer from engineering perspective.
 Finally, I want to share a beautiful piece of trolling the author throws at the
 readers. In the middle of the book, the author implements FizzBuzz using lamba
 calculus implemented only with Ruby's anonymous funtions. At the end of the
-chapter, the author gives a beautiful piece of a FizzBuzz program that spans
+chapter, the author gives a beautiful FizzBuzz program that spans
 over four pages.
 
 I want to note that, however, this is not some meaningless trolling. The author
-thoroughly demonstrates how to implement each part of this code, so if
-you actually read the book, you can discern some of the moving parts in the
-code. So this is rather a cheeky pat in the back by the author to the readers
-who followed him so far.
+thoroughly demonstrates how to implement each part of this code, so if you
+actually read the book, you can actually discern some of the moving parts in
+the code. So this is rather a cheeky pat in the back by the author to the
+readers who have followed him so far.
 
 You can copy the following code to a Ruby file and run it to see if it is
-actually a working FizzBuzz program. I put linebreaks within `fizzbuzz_program`
-to improve readability, so you should merge the lines into a single line to
-make it a valid Ruby code.
+actually a working FizzBuzz program.
 
 Now enjoy the code:
 
