@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: how-to-bake-pi-review
-date: 2017-09-05 00:00:00 +0900
+date: 2017-09-08 00:00:00 +0900
 title: How to Bake Pi - Review
 lang: en
 ---
@@ -31,7 +31,7 @@ analogy to baking. For example, when talking about abstraction, she takes
 mayonnaise and Hollandaise sauce as examples. Both are made with almost
 identical ingredients and processes, except that mayonnaise uses olive oil and
 Hollaindaise sauce uses butter. They are examples of "things that are somehow
-the same apart from small details."
+the same apart from small details," which is how she describes abstraction.
 
 Although analogy to baking is continuously made throughout the book, it is not
 the only analogy she uses. She also draws plenty of other examples from
@@ -224,6 +224,6 @@ concepts, and know where to learn more about them.
 ## Further Reading
 
 While reading this book, I learned of another resource that could be helpful in
-achieving my second goal. It's called [Category Theory for Programmers: The
-Preface](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).
-I will put it in my reading list.
+learning about category theory in the context of software development. It's
+called [Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).
+I put it in my reading list.
