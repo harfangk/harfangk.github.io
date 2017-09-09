@@ -2,14 +2,15 @@
 layout: post
 ref: how-to-bake-pi-review
 date: 2017-09-08 00:00:00 +0900
-title: How to Bake Pi - 후기
+title: How to Bake Pi 리뷰
 lang: ko
 ---
 
 ## 요약
 
-`How to Bake Pi: an Edible Exploration of the Mathematics of Mathematics
-(파이를 굽는 방법: 수학의 수학에 대한 식용 안내서)`는 제빵을 포함한 일상 생활
+[How to Bake Pi: an Edible Exploration of the Mathematics of
+Mathematics](https://www.amazon.com/How-Bake-Pi-Exploration-Mathematics/dp/0465097677)
+(파이를 굽는 방법: 수학의 수학에 대한 식용 안내서)는 제빵을 포함한 일상 생활
 속의 예시를 사용해서 수학의 목적과 기초적인 개념을 이해하기 쉽게 설명해주는
 책입니다.
 

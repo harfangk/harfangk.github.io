@@ -8,7 +8,8 @@ lang: en
 
 ## Summary
 
-`How to Bake Pi: an Edible Exploration of the Mathematics of Mathematics`
+[How to Bake Pi: an Edible Exploration of the Mathematics of
+Mathematics](https://www.amazon.com/How-Bake-Pi-Exploration-Mathematics/dp/0465097677)
 explores what mathematics is about by explaining the purpose and building
 blocks of mathematics in an easy-to-read language, drawing examples from
 everyday life, including baking.
