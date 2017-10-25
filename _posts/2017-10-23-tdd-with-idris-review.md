@@ -13,28 +13,28 @@ Idris](https://www.manning.com/books/type-driven-development-with-idris)
 introduces a software development approach that uses types as the primary tool
 for building softwares. In this paradigm, types are given much more
 responsibilities than their traditional role of checking data validity. For
-example, types can be used to represent the beginning and ending states of
+example, types can be used to represent the input and output states of
 functions or various contracts that functions and datas must fulfill. Such
 descriptions and contracts are enforced at compile time, providing much
 stronger guarantee of software correctness at compile time than other
 approaches can.
 
-Idris programming language is used to teach type-driven development (TDD) in
-the book. Idris is a general purpose pure functional programming language
-created by Edwin Brady, who is also the author of this book. Idris is inspired
-by Haskell and ML and sports a state of the art type system suited for TDD.
-You can learn basics of Idris language alongside TDD in this book.
+Idris programming language is used in the book to teach type-driven development
+(TDD). Idris is a general purpose pure functional programming
+language created by Edwin Brady, who is also the author of this book. Idris is
+inspired by Haskell and ML and sports a state of the art type system suited for
+TDD. You will learn basics of Idris language alongside TDD in this book.
 
 ## Who Is It For
 
-I recommend this book to those who are interested in pushing statically
-typed system to its limit to build programs with strong guarantee of
-correctness. You should be familiar with basic concepts of functional
-programming such as immutability, closures, or higher-order functions. It would
-be very helpful if you already know other functional programming languages like
-Haskell, OCaml, or Scala. The book introduces a lot of new concepts, so you'd
-rather avoid having to learn about functors while trying to understand the
-concepts introduced in this book.
+I recommend this book to those who are interested in using statically typed
+system to build programs with strong guarantee of correctness. You
+should be familiar with basic concepts of functional programming such as
+immutability, closure, or higher-order function. It would be very helpful if
+you are already familiar with functional programming languages like Haskell,
+OCaml, or Scala. The book introduces a lot of new concepts, so you'd rather
+avoid having to learn about functors while trying to understand those other new
+concepts introduced in the book.
 
 I do not recommend this book if you are not interested in statically typed
 system or if you are a pragmatist interested in concepts and languages that can
@@ -45,26 +45,26 @@ sheer amount of prerequisite knowledge.
 ## What Makes It Special
 
 What I appreciate the most is that the author maintains clear focus on his
-stated goal of introducing TDD. Far too many books, especially ones that deal
-with topics that their authors are passionate about, have unncessary chapters
-that digress from the topic of the book. In contrast, this entire book is
-written and organized for the introduction of TDD, with a clear sense of
-progression between consecutive chpapters. The author begins by introducing
-basic concepts and setting up development environment; then he provides
-increasingly advanced examples of TDD; in the final five chapters, he presents
-somewhat more realistic examples like file IO or concurrent programming.
+stated goal of introducing TDD. Far too many books, especially the ones that
+deal with topics that their authors are passionate about, have unncessary
+chapters that digress from the topic of the book. In contrast, this entire book
+is written and organized for the introduction of TDD with a clear sense of
+progression between each chapter. The author begins by introducing basic
+concepts and setting up development environment; then he provides increasingly
+advanced examples of TDD; in the final five chapters, he presents somewhat more
+realistic examples like file IO or concurrent programming.
 
-Another great point is that the author knows how to teach something, which is
-a somewhat rare skill among technical writers. At the beginning of the book, he
-introduces an iterative process for TDD: "type, define, refine: writing a type,
-implementing a function to satisfy that type, and refining the type or
-definition as we learn more about the problem." This process is used throughout
-the book, each time in a slightly different context to demonstrate its
-application. Such repetition of same process under different circumstances is
-one of the most effective way for teaching.
+Another thing I like about this book is that the author teaches the concepts
+systematically, which is a somewhat rare skill among technical writers. At the
+beginning of the book, he introduces an iterative process for TDD: "type,
+define, refine: writing a type, implementing a function to satisfy that type,
+and refining the type or definition as we learn more about the problem." This
+process is used throughout the book, each time in a slightly different context
+to demonstrate its application. Such repetition of identical process under
+different circumstances is one of the most effective method for teaching.
 
-The author also takes a tutorial-like approach when introducing new concepts.
-He first provides some code to serve as a starting point, and then guides the
+The author also introduces new concepts through tutorial-like examples. He
+first provides some code to serve as a starting point, and then guides the
 readers through each step, all the while adhering to the "type, define, refine"
 process. Here is a simple example with step-by-step progression from Chapter 3:
 
@@ -92,9 +92,9 @@ xor True y = not y
 
 Lastly, the author also provides nice exercises for each chapter. Whereas some
 books provide difficult exercises that can only be solved when you thoroughly
-understand the new concepts, the exercises in this book are relatively simple
-ones aimed at getting you more familiar with the concepts. I think that this
-kind of exercises is more appropriate when you are learning something on your
+understand new concepts, the exercises in this book are relatively simple ones
+aimed at getting you more familiar with them. I think that this kind of
+exercises is more appropriate when you are trying to learn something on your
 own through books.
 
 ## Type-Driven Development (TDD)
@@ -102,7 +102,7 @@ own through books.
 In functional programming paradigm, a program is seen as a process of
 transforming data from one form to another. Such data forms or structures are
 represented as types, and the transformation process is represented as
-a function with input and output data types. TDD puts emphasis on using types
+a function with input and output. TDD puts emphasis on using types
 and functions to depict the overall plan and structure of a program. The main
 process in TDD is "type, define, refine", as previously mentioned.
 
@@ -113,12 +113,11 @@ defining `data Matter = Solid | Liquid | Gas`. Then we can represent
 a phase transition from one state to another as a function `phaseTransition
 : Matter -> Matter`. 
 
-Once we define initial types and functions, we keep on refining these
-definitions so that the software would match our conceptual model more
-precisely. Let's say we'd like to represent plasma state in our program too.
-Then we can refine the type like `data Matter = Solid | Liquid | Gas
-| Plasma`. We repeat this "type, define, refine" process until we write
-a satisfactory program.
+Once we define initial types and functions, we keep refining these definitions
+so that the software would more precisely match our conceptual model. Let's say
+we'd like to add the plasma state to our program. Then we can refine our type
+like `data Matter = Solid | Liquid | Gas | Plasma`. We repeat this "type,
+define, refine" process until we reach a satisfactory iteration.
 
 I believe that rather than being a completely novel approach, TDD is more of an
 organized description of a software development approach that organically arose
@@ -131,25 +130,23 @@ approach.
 ## Idris Programming Language
 
 Having said that, TDD as presented in this book is way more powerful than what
-I've seen in Haskell. It is because of additional features offered by Idris
-programming language, which is a general purpose pure functional programming
-language that builds upon the tradition of Haskell and ML. Let's look at some
-of its notable characteristics.
+little I've seen in Haskell. It is because of additional features offered by
+Idris programming language. Let's look at some of its notable characteristics.
 
 ### First-class Type
 
 Idris has first-class type and can pass around types as arguments to other
-functions. If you've experienced the paradigm shift that ocurred when
+functions. If you've experienced the paradigm shift that occurred when
 first-class function was introduced, you could guess how much this changes the
 game. Like first-class function, first-class type opens up a completely new way
 to express our intents through code.
 
-For example, in Idris `List` type is defined as `data List : (elem : Type) ->
-Type`. It's just a regular type that takes another type as an argument, without
-special interface-like syntax provided by the language. Unfortunately, the full
-implications of first-class type is hard to demonstrate through such trivial
-example. In Idris, this feature is used mostly in conjunction with dependent
-type, which we will look at next.
+As a simple example of first-class type, in Idris `List` type is defined as
+`data List : (elem : Type) -> Type`. It's just a regular type that takes
+another type as an argument, without special interface-like syntax provided by
+the language. Unfortunately, the full implications of first-class type is hard
+to demonstrate through such trivial example. In Idris, this feature is used
+mostly in conjunction with dependent type, which we will look at next.
 
 ### Dependent Types
 
@@ -164,7 +161,8 @@ different values as their lengths. This can be generalized as `Vector n String`
 type, which is essentially a function that takes `n` as input and returns types
 as outputs. The type of output returned by this function is "dependent" on the
 value of `n`, so this kind of function is called a dependent function. The type
-of this function, in turn, is called dependent type.
+of this function, in turn, is called dependent function type or shortened to
+dependent type.
 
 Dependent type gives us a new dimension of code expressiveness, enabling us to
 incorporate more information about program into the type system. I found two
@@ -172,11 +170,12 @@ use cases most interesting. First, information about data that was available
 only at runtime can be made available at compile time. For example, `Integer`
 type tells us that a value of its type will be an integer. But whether
 a variable of that type would be a positive or negative number, or zero can
-only be determined at runtime. With dependent type, we can define types such as
-"positive integers that are multiples of three" or "odd integers greater than
--50 and less than 9953". We've already seen the `Vect n String` type, which
-represents "lists of n String items". Because such information is guaranteed by
-type system at compile time, we never have to worry about unexpected values.
+only be determined at runtime. With dependent type, we can define more precise
+types such as "positive integers that are multiples of three" or "odd integers
+greater than -50 and less than 9953". We've already seen the `Vect n String`
+type, which represents "lists of n String items". Because such information is
+guaranteed by the type system at compile time, we never have to worry about
+unexpected values.
 
 Second, description about what constitutes a valid program can be represented
 in the type system. For example, in the context of bank transactions, we can
@@ -198,8 +197,8 @@ no more need to continuously go back and forth between documents and source
 code to ensure that new requirements are reflected.
 
 In the book, the author demonstrates several use cases of dependent type. I'll
-showcase one particular case of representing input and output states of
-operations in a dependent type, extending the state of matter example.
+extend the state of matter example to showcase how to represent input and
+output states of operations in a dependent type.
 
 ```haskell
 data Matter = Solid | Liquid | Gas
@@ -221,7 +220,7 @@ data PhaseTransition : Type -> Matter -> Matter -> Type where
 `PhaseTransition` dependent type describes potential phase transitions among
 states of matter, where last two arguments refer to input and output states.
 For example, a value of `PhaseTransition` dependent type constructed with
-`Melt` constructor states that input and output states must be `Solid` and
+`Melt` constructor requires that input and output states must be `Solid` and
 `Liquid`, respectively. We can use these operations to write a sequence of
 phase transitions like following:
 
@@ -276,22 +275,21 @@ xor True y = not y
 Something that starts with `?`, in this case `?xor_rhs`, `?xor_rhs_1`, and
 `?xor_rhs_2`, is a hole. It stands in for incomplete parts of the program, and
 Idris REPL provides amazing commands to work with holes. The instructions in
-the above code refer to some basic ones, such as automatic case splitting or
-displaying which type the hole stands for. In the following gif, you can see me
-actually following the instructions. Working in Idris REPL is an incredibly
-pleasant experience. It feels like having a meticulous and helpful assistant,
-not a nagging manager.
+the above code refer to some basic commands, such as automatic case splitting
+or displaying which type the hole stands for. In the following gif, you can see
+me actually following these instructions. Working in Idris REPL is an
+incredibly pleasant experience. It feels like having a meticulous and helpful
+assistant, not a nagging manager.
 
 ![terminal gif]({{ site.baseurl }}/assets/idris_repl_demo.gif)
 
 ## Other Musings
 
 Overall reading the book was an eye-opening experience. This was by far the
-most difficult programming language book apart from the very first programming
-book that I read, as it introduced a lot of unique concepts. For example,
-I was dumbstruck when I learned that I had to convince the Idris compiler that
-`1 + k` and `k + 1` are equivalent types to pass the type check. I've never
-seen anything like that in other languages.
+most difficult programming language book that I've read, as it introduced a lot
+of unique concepts. For example, I was dumbstruck when I learned that I had to
+convince the Idris compiler that `1 + k` and `k + 1` are equivalent types to
+pass the type check. I've never seen anything like that in other languages.
 
 Idris is a visionary language, which tries to address some inherent flaws of
 current models of programming. I like it as a language, but I doubt it will
@@ -301,11 +299,11 @@ powerful for typical tasks. Mainstream is all about being "just good enough",
 but Idris is more about "above and beyond". For typical shopping mall inventory
 management system, Idris is a bit overqualified. Moreover, I have a hunch that
 in collaborative environment it would be hamstrung by its excellent
-expressiveness. There would be so many ways to express something that everyone
-would end up writing programs in different styles, which causes significant
-problems for collaboration. There's a reason that Google keeps Go language so
-plain despite criticisms.
+expressiveness. There would be so many ways to express something that each team
+member would end up writing programs in different styles, which causes
+significant problems for collaboration. There's a reason that Google keeps Go
+language so plain despite continued criticisms.
 
 Having said that, if I had to write software for nuclear reactors, I would
-definitely pick Idris. It would give me unparalleled confidence in my code for
-such a critical system.
+definitely pick Idris, because it gives me unparalleled confidence in my code
+for such a critical system.
