@@ -32,4 +32,4 @@ paginate: 10
 # Build settings
 markdown: kramdown
 
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
