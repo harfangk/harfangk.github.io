@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: elm-function-operators
-date: 2018-02-28 00:00:00 +0900
+date: 2018-01-28 00:00:00 +0900
 title: A Short Guide to Function Operators in Elm: |>, <|, >>, <<
 lang: en
 ---
@@ -10,15 +10,14 @@ lang: en
 
 Once we get through the introduction to Elm, we start to encounter some odd-looking operators in Elm
 codes. I'm talking about the ones like `>>`, `<<`, `|>`, and `<|`, which modify how functions are
-composed and applied. I will give more details about how and when I use them in the rest of this
-post, but here's my rule of thumb:
+composed and applied. I will give more details about how and when I use them in this post, but
+here's my rule of thumb:
 
 1. Use `|>` and `<|` to visually describe the flow of data. It's their main advantage over nested
    parantheses, which provide equivalent functionalities.   
 
-2. Use `>>` and `<<` to describe purely function compositions without thinking about the data flow.
-   In practice, I usually define a new function through composition and and use it with `|>` and
-   `<|`.
+2. Use `>>` and `<<` to describe function compositions independent of the data flow. In practice,
+   I usually define a new function through composition and use it with `|>` and `<|`.
 
 3. Use either the pair of `|>` and `>>` or `<|` and `<<` without mixing them. The shapes of these
    operators hold inherent directional meanings, so mixing different directions taxes our cognitive
@@ -28,16 +27,16 @@ post, but here's my rule of thumb:
 ## Do We Really Need These Weird Operators?
 
 We don't. Elm will still work fine even if we removed these operators, because there are other
-perfectly fine ways to do the same thing. After all, they are just syntactic sugars. But these
-operators let us write more understandable code by adding extra visual information about the flow
-and structure of the code. Let's see some examples. 
+perfectly fine ways to do the same thing. After all, they are just syntactic sugars that stand in
+for standard functions. But these operators let us write more understandable code by adding extra
+visual information about the flow of data and structure of code. Let's see some examples. 
 
 ## Examples
 
 ### `|>` Operator
 
 Here's an example task that I want to accomplish: given a list of random integers, I want to get the
-first digit of each integer. Here's my initial implementation without function operators:
+first digit of each integer as a list. Here's my initial implementation without function operators:
 
 ```elm
 getFirstDigits : List Int -> List Int
@@ -74,13 +73,13 @@ getFirstDigits list =
 Thanks to `|>`, we no longer have to assign intermediate results to pass them to the next step.
 Moreover, `|>` gives a visual hint about where the data will flow to.
 
-How does this work? `|>` passes its first argument to its second argument, which is always
-a function. You can see that in its type signature: `(|>) : a -> (a -> b) -> b`. Instead of
-expressing the function as several distinct operations, we can express it as a single pipeline of
-connected operations.
+How does it work? `|>` passes its first argument to its second argument, which is a function. We can
+see that in its type signature: `(|>) : a -> (a -> b) -> b`. In practice, we can keep passing the
+result of previous operation to the next operation, expressing it as a single pipeline of connected
+operations.
 
-It's important to note that there's no magic involved here. `|>` is just a syntactic sugar. The
-above function can be expressed like this too:
+As I said, `|>` is just a syntactic sugar, so the above function can be expressed like this without
+the operator:
 
 ```elm
 getFirstDigits : List Int -> List Int
@@ -88,9 +87,9 @@ getFirstDigits list =
     (List.map (Result.withDefault 0) (List.map (String.toInt) (List.map (String.left 1) (List.map toString list))))
 ```
 
-But we use the style using `|>` because saves us from typing nested parantheses, and manually
-keeping track of which operation comes next. In general, `|>` is useful when you want to express
-a series of connected operations.
+But we use the style using `|>` because it saves us from writing nested parantheses or manually
+keeping track of which operation comes next. In general, `|>` is useful when we want to
+express a series of connected operations.
 
 ### `<|` Operator
 
@@ -104,11 +103,11 @@ getFirstDigits list =
 ```
 
 As you can see, `<|` lets us visually express the flow from right to left. If you are used to
-mathematical notations, which flow from right to left, you'll feel at home. Or maybe if your native
-language is written right-to-left. Personally I find that the right-to-left flow conflicts with the
-overall top-left-to-bottom-right flow that I'm used to, so I rarely use this operator. Still, I do
-find it useful in certain cases. For example, I like it when the last argument of a function is
-a function spans over multiple lines like this:
+mathematical notations, which flow from right to left, or a right-to-left language, you'll feel at
+home. Personally I find that the right-to-left flow conflicts with the overall
+top-left-to-bottom-right flow that I'm used to, so I rarely use this operator. Still, I do find it
+useful in certain cases. For example, I like it when the last argument of a function is a function
+that spans over multiple lines like this:
 
 ```elm
 -- with <|
@@ -151,7 +150,7 @@ String.length << toString : a -> Int
 ```
 
 As you can tell from the function signatues, `>>` and `<<` combine two functions into one. Their
-definitions show this in more abstract way.
+definitions show this in a more abstract way.
 
 ```elm
 (<<) : (b -> c) -> (a -> b) -> (a -> c)
@@ -160,7 +159,7 @@ definitions show this in more abstract way.
 ```
 
 Functionally they are identical, except that they work in opposite directions. The direction of
-arrow hints at the direction of function composition. But if they are almost identical, which one
+arrows align with the direction of function composition. But if they are almost identical, which one
 should we use? I think this is more about personal taste. Using either composition operators with
 pipe operators, our example function can be expressed like this:
 
@@ -178,13 +177,10 @@ If you prefer right-to-left flow, go with the pair of `<<` and `<|`. On the othe
 prefer left-to-right flow, go with the pair of `>>` and `|>`. Just avoid mixing operators with
 different flow direction - that adds unnecessary burden to our brains.
 
-But where do we use function composition? Abstractly, they let us mix and match smaller
-functions to create a larger one. Remember that all functions in Elm are curried and can be broken
-down into functions that take only one argument. It means that we are given almost infinite
-possibilities for mixing and matching functions.
-
-Practically, this gives us a lot of freedom when writing funtions. Let's get back to our example
-function.
+But how are these operators useful? Abstractly, they let us mix and match smaller functions to
+create a larger one, giving us an almost infinite possiblity for creating new functions out of other
+ones. Practically, this gives us a lot of freedom when writing funtions. Let's get back to our
+example function.
 
 ```elm
 getFirstDigits : List Int -> List Int
@@ -195,15 +191,14 @@ getFirstDigits list =
     |> List.map (String.toInt >> Result.withDefault 0)
 ```
 
-Here I used function composition to group two small functions into one for transforming string to
-integer, because I think that those two functions are more meaningful when they are composed
-toegther. I find function composition most useful when grouping logically coupled functions. You can
-also separate them into a new function in that case, but function composition gives us an inline
-option.
+Here I used `>>` to group two small functions into one for transforming string to integer, because
+I thought that those two functions are more meaningful when composed together. I find function
+composition most useful when grouping logically coupled functions. We can also separate them into
+a new function in that case, but `>>` gives us a quick inline option.
 
-## Implications of Function Operators
+## Things to Watch Out When Using Function Operators
 
-Depending on the context and our mental model, there are dozens of different ways to express this code. Here's another one:
+Depending on the context, there are dozens of different ways to express this code. Here's another one:
 
 ```elm
 -- Split to separate function
@@ -220,12 +215,12 @@ stringToInt s = String.toInt << Result.withDefault <| s
 
 Overall, I gave 9 different ways to write this function in this post. If we didn't have function
 operators, we would have been restricted to using nested parentheses, assigning intermediate
-variables,cand defining new functions. As we've seen here, function operators greatly expand our
+variables, and defining new functions. As we've seen here, function operators can greatly expand our
 freedom of expression when writing code.
 
-Nevertheless, they can lead to chaos when abused. Mixing different styles of functions makes it
-harder for others to read and understand our code - which include our future selves. So it's
-important to have self-discipline and clear conventions when using these operators.
+Nevertheless, they can lead to chaos when abused. Mixing functions written in different styles makes
+it harder for others to read and understand our code - which include our future selves. So it's
+important to have self-discipline and clear conventions to use these operators in a consistent way.
 
 ## Conclusion
 
