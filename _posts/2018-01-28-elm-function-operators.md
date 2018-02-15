@@ -2,9 +2,10 @@
 layout: post
 ref: elm-function-operators
 date: 2018-01-28 00:00:00 +0900
-title: A Short Guide to Function Operators in Elm: |>, <|, >>, <<
+title: A Short Guide to Function Operators in Elm (|>, <|, >>, <<)
 lang: en
 ---
+
 
 ## Summary
 
