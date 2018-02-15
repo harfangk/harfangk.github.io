@@ -23,6 +23,10 @@ Mathematics](https://www.amazon.com/How-Bake-Pi-Exploration-Mathematics/dp/04650
 분야를 책으로 표현한다면, 이 책의 내용은 좀 길게 쓰인 서장정도에 해당할
 것 같습니다. 
 
+(추가: 글 작성 이후에 알게 되었는데 이 책은 이미 한국어 번역본이 있습니다. [수학을
+요리하다](http://www.kyobobook.co.kr/product/detailViewKor.laf?barcode=9791170220305&orderClick=357)라는
+제목으로 출간되었습니다. 직접 읽어보진 않아서 번역의 질은 잘 모르겠습니다.)
+
 ## 이 책만의 장점
 
 제빵과 수학은 흔히 볼 수 있는 조합은 아닙니다. 이 책의 저자 Eugenia Chang은
