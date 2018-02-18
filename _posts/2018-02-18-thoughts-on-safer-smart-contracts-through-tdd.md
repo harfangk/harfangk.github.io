@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: smart-contracts-with-tdd
-date: 2017-02-18 00:00:00 +0900
+date: 2018-02-18 00:00:00 +0900
 title: Thoughts on Safer Smart Contracts Through Type-Driven Development
 lang: en
 ---
