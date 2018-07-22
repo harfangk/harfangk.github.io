@@ -1,7 +1,7 @@
 ---
 layout: post
 ref: why-i-find-css-so-hard
-date: 2017-07-14 00:00:00 +0900
+date: 2018-07-14 00:00:00 +0900
 title: CSS가 어려운 이유
 lang: ko
 ---
