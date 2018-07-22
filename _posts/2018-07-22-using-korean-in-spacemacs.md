@@ -8,11 +8,13 @@ lang: en
 
 ## Using Korean in Spacemacs
 
-I've started trying out Emacs because I lost patience trying to set up Haskell development environment in Vim. Some random person on the Internet suggested Spacemacs, so I decided to give it a try. So far I'm liking it. Unfortunately the documentation on setting up Korean language environment was a bit outdated and/or fragmented for an Emacs newbie like me to easily understand. After some researching I've come up with a working configuration so I'll share it here. I'm using `D2Coding` font, but feel free to use whatever you like.
+I've started trying out Emacs because I lost patience while trying to set up Haskell development environment in Vim. Some random person on the Internet suggested Spacemacs as an alternative, so I decided to give it a try. So far I'm liking it - it works out of box without much configuration. Unfortunately the documentation on setting up Korean language environment was a bit outdated and/or fragmented for an Emacs newbie like me to easily understand. After some researching I've come up with a working configuration so I'll share it here. I'm using `D2Coding` font, but feel free to use whatever you like.
 
-This setting works for Ubuntu 16.04.4 and Emacs 26.1.
+I'm using Ubuntu 16.04.4 and Emacs 26.1.
 
 ```elisp
+;~/.spacemacs
+
 (defun dotspacemacs/user-config ()
   (set-language-environment "Korean")
   (prefer-coding-system 'utf-8)
@@ -36,8 +38,8 @@ This setting works for Ubuntu 16.04.4 and Emacs 26.1.
 This is what the setting means line-by-line:
 
 * `(set-language-environment "Korean")`: Load Korean language environment. Use command `C-h L Korean <RET>` to see what it does.
-* `(prefer-coding-system 'utf-8)`: Korean language environment has `ISO-2022-KR`, `EUC-KR`, and `CP949` coding systems. I want `utf-8` instead.
-* `(setq default-korean-keyboard "3f")`: Default is 2-beolsik, but I use 3-beolsik-final. To see the list of available input methods, try `C-h I hangul`.
+* `(prefer-coding-system 'utf-8)`: Korean language environment has `ISO-2022-KR`, `EUC-KR`, and `CP949` coding systems. I use `utf-8` instead.
+* `(setq default-korean-keyboard "3f")`: Default is 2-beolsik, but I use 3-beolsik-final. You won't need this line if you use 2-beolsik. To see the list of available input methods, try `C-h I hangul`.
 * `(global-set-key (kbd "<kana>") 'toggle-input-method)`: Assign input toggle function to Korean/English key.
 * `(global-unset-key (kbd "S-SPC"))`: By default, `Shift+Space` is the input toggle key. I unbind it because I keep unintentionally switching the input. 
 * `(set-fontset-font "fontset-default" '(#x1100 . #x11ff) '("D2Coding" . "iso10646"))`: Use `D2Coding` font for characters between `U+1100-U+11ff`, called [Hangul Jamo](http://www.unicode.org/charts/PDF/U1100.pdf) in `iso-10646` Unicode standard.
