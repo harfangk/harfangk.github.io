@@ -2,7 +2,7 @@
 layout: post
 ref: display-entire-text-in-elm-debugger
 date: 2018-07-29 00:00:00 +0900
-title: 엘름 디버거에서 모든 텍스트 표시하기
+title: 엘름 디버거에서 전체 텍스트 표시하기
 lang: ko
 ---
 
