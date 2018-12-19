@@ -19,7 +19,7 @@ elm-live src/Main.elm --open -- --output=elm.js
 
 This approach defines a port function for each interaction between Elm and JavaScript. Since ports are always one-way, if data goes back and forth, that requires a pair of ports. Here's a sample implementation. The entire code can be found in `individual-ports` branch.
 
-```haskell
+```elm
 # Main.elm
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -61,7 +61,7 @@ Lastly, each port function requires its own event listener, which might tax perf
 
 This approach defines one port to handle all interactions from Elm to JavaScript, and another to handle all interactions from JavaScript to Elm. The entire code can be found in `centralized-ports` branch.
 
-```haskell
+```elm
 # Main.elm
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -141,7 +141,7 @@ Centralized ports approach uses two port functions that act as routers between E
 
 But this approach makes modularization a bit hard. Since all port subscriptions must be assigned a `Msg` to handle them at the top level `Main` module, it needs to know about the `Msg` constructors of its submodules. Here's `inboundMethodToMsg` function in the `Main` module in the `complex-model-centralized-ports` branch for an example. 
 
-```haskell
+```elm
 inboundMethodToMsg : Port.InboundMethod -> Msg
 inboundMethodToMsg inboundMethod =
     case inboundMethod of
