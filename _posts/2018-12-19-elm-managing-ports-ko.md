@@ -19,7 +19,7 @@ elm-live src/Main.elm --open -- --output=elm.js
 
 이 방식에서는 엘름과 자바스크립트간 통신마다 하나의 포트 함수를 정의합니다. 포트는 항상 단방향 통신이기 때문에 데이터가 왕복할 경우 한 쌍이 필요합니다. 간단한 예시 코드인데, 전체 코드는 `individual-ports` 브랜치에서 확인해보실 수 있습니다.
 
-```elm
+```haskell
 # Main.elm
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -61,7 +61,7 @@ port setCookie : { key : String, value : String } -> Cmd msg
 
 이 방식에서는 엘름에서 자바스크립트로 가는 통신을 모두 담당할 포트 함수 하나, 그리고 자바스크립트에서 엘름으로 오는 통신을 모두 담당할 포트 함수 하나를 정의합니다. 전체 코드는 `centralized-ports` 브랜치에서 확인할 수 있습니다.
 
-```elm
+```haskell
 # Main.elm
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -141,7 +141,7 @@ decoder_ method =
 
 하지만 이 방식을 사용하면 모듈화가 조금 어려집니다. 각 포트 섭스크립션을 처리할 `Msg`를 최상위 `Main` 모듈에서 모두 지정해줘야하기 때문에 최상위 모듈에서 하위 모듈의 `Msg` 컨스트럭터에 접근할 수 있어야만 합니다. `complex-model-centralized-ports` 브랜치의 `Main` 모듈에 정의된 `inboundMethodToMsg` 함수를 살펴봅시다.
 
-```elm
+```haskell
 inboundMethodToMsg : Port.InboundMethod -> Msg
 inboundMethodToMsg inboundMethod =
     case inboundMethod of
