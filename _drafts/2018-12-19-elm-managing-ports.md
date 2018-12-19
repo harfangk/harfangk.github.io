@@ -6,7 +6,7 @@ title: How to Organize Port Functions in Elm
 lang: en
 ---
 
-I've been thinking about how to organize Elm's port functions and here's a few I've come across. I assume that the readers know basics of Elm, including the Elm Architecture and how port works. I put a working Elm app example in my Github repository. If you want to run it, follow this instruction to set it up:
+I've been thinking about how to organize Elm's port functions and here's two approaches that I've put together. I assume that the readers know basics of Elm, including the Elm Architecture and how ports work. I put a working Elm app example in my Github repository. If you want to run it, follow this instruction to set it up:
 
 ```bash
 git clone harfangk/elm-port-examples
@@ -17,7 +17,7 @@ elm-live src/Main.elm --open -- --output=elm.js
 
 # Individual Ports
 
-This approach defines a port function for each interaction between Elm and JavaScript. Since ports are always one-way, if data goes back and forth, that requires a pair. Here's a typical implementation. The entire code can be found in `individual-ports` branch.
+This approach defines a port function for each interaction between Elm and JavaScript. Since ports are always one-way, if data goes back and forth, that requires a pair of ports. Here's a sample implementation. The entire code can be found in `individual-ports` branch.
 
 ```elm
 # Main.elm
@@ -47,43 +47,15 @@ port gotCookies : (String -> msg) -> Sub msg
 port setCookie : { key : String, value : String } -> Cmd msg
 ```
 
-```html
-// index.html 
-
-<script>
-  app.ports.setLocalStorageItem.subscribe(function(item){
-    localStorage.setItem(item.key, item.value);
-  })
-  app.ports.getLocalStorageItem.subscribe(function(key){
-    let value = localStorage.getItem(key);
-    app.ports.gotLocalStorageItem.send({key: key, value: value});
-  })
-  app.ports.removeLocalStorageItem.subscribe(function(key){
-    localStorage.removeItem(key);
-  })
-  app.ports.clearLocalStorage.subscribe(function(){
-    localStorage.clear();
-  })
-  app.ports.getCookies.subscribe(function(){
-    let cookies = document.cookie;
-    app.ports.gotCookies.send(cookies);
-  })
-  app.ports.setCookie.subscribe(function(cookieObj){
-    let cookie = `${cookieObj.key}=${cookieObj.value}`;
-    document.cookie=cookie;
-  })
-</script>
-```
-
 Individual ports approach lets you write more granular functions that do only one things. They also have more specific type signatures for inputs and outputs, providing better type safety at compile time. Since they are all separate functions, you can give them semantic names for better readability. 
 
-Because port functions are small and specific, they are very unlikely to leak across module boundaries. Check out `complex-model-individual-ports` branch for a more complex model structure. You can see that `Page.Storage.initModel`, `Page.Storage.update`, `Page.Storage.view`, and `Page.Storage.subscriptions` are the only connecting parts between `Main` module and `Page.Storage` module. This makes it easy to decouple modules and replace them as required.
+Because port functions are small and specific, they are unlikely to leak across module boundaries. Check out `complex-model-individual-ports` branch for a more complex model structure. You can see that `Page.Storage.initModel`, `Page.Storage.update`, `Page.Storage.view`, and `Page.Storage.subscriptions` are the only connecting parts between `Main` module and `Page.Storage` module. This makes it easy to decouple modules and replace them as required.
 
-On the other hand, the number of required port functions quickly grows unwieldy through this approach - 10 port functions were required to implement basic local storage and cookie interactions. 
+On the other hand, the number of required port functions quickly grows unwieldy under this approach - 10 port functions were required to implement basic local storage and cookie interactions. It's not hard to see more than a hundred port functions in larger applications.
 
-Moreover, while this approach allows easier modularization, each module is liable to have little separation between core Elm codes and JavaScript interaction codes. In the `Page.Storage` module, it is hard to quickly discern which `Msg` handles Elm events and which handles JavaScript events.
+Moreover, while this approach allows easier modularization, each module tends to intermix core Elm codes and Elm-JavaScript interoperation codes. In the `Page.Storage` module, it is hard to quickly discern which `Msg` handles Elm events and which handles JavaScript events. You can use comments to somewhat mitigate this, but this remedy is likely to fall apart as you add more `Msg`.
 
-Lastly, each port function requires its own event listener, which might tax performance at some point.
+Lastly, each port function requires its own event listener, which might tax performance at some point. But I'm not sure how Elm handles this issue so it might be an unfounded concern.
 
 ## Centralized Ports
 
@@ -141,6 +113,7 @@ encode method =
         ...
 
 -- Inbound Ports
+
 type InboundMethod
     = GotLocalStorageItem { key : String, value : String }
     | GotCookies String
@@ -164,42 +137,7 @@ decoder_ method =
             JD.fail "Got unregistered inbound port method"
 ```
 
-```html
-// index.html
-
-<script>
-  app.ports.sendPortMsg.subscribe(function(msg){
-    let method = msg.method;
-    switch (method) {
-      case 'setLocalStorageItem':
-        localStorage.setItem(msg.payload.key, msg.payload.value);
-        break;
-      case 'getLocalStorageItem':
-        let value = localStorage.getItem(msg.payload) || 'null';
-        app.ports.gotPortMsg.send({method: 'gotLocalStorageItem', payload: {key: msg.payload, value: value}});
-        break;
-      case 'removeLocalStorageItem':
-        localStorage.removeItem(msg.payload);
-        break;
-      case 'clearLocalStorage':
-        localStorage.clear();
-        break;
-      case 'getCookies':
-        let cookies = document.cookie;
-        app.ports.gotPortMsg.send({method: 'gotCookies', payload: {cookies: cookies}});
-        break;
-      case 'setCookie':
-        let cookie = `${msg.payload.key}=${msg.payload.value}`;
-        document.cookie=cookie;
-        break;
-    }
-  })
-</script>
-```
-
-Centralized ports approach uses two port functions that act as routers between Elm and JavaScript. As everything about Elm-JavaScript interoperation is handled by these two functions, it is easy concentrate all codes related to ports in the `Port` module. Whereas individual ports approach requires encoding and decoding for port functions over and over in each module that uses those particular functions, all such codes are safely tugged inside the `Port` module in this case. This provides separation of concerns between Elm codes and Elm-JavaScript interoperation codes, making it easier to understand and modify that particular functionality of the application. 
-
-Additionally, you need just two event listeners for all Elm-JavaScript interoperation using this approach.
+Centralized ports approach uses two port functions that act as routers between Elm and JavaScript. As everything about Elm-JavaScript interoperation is handled by these two functions, it is easy to concentrate all interoperation codes into a particular module. This provides a clear separation of concerns between Elm codes and Elm-JavaScript interoperation codes, making it easier to understand and modify that particular domain of the application. If you want to interact with JavaScript code, you can simply call functions defined in the `Port` module instead of encoding and decoding data for port functions over and over again; if you want to modify port functions, you can simply change codes in that one module and be done with it. 
 
 But this approach makes modularization a bit hard. Since all port subscriptions must be assigned a `Msg` to handle them at the top level `Main` module, it needs to know about the `Msg` constructors of its submodules. Here's `inboundMethodToMsg` function in the `Main` module in the `complex-model-centralized-ports` branch for an example. 
 
@@ -217,16 +155,18 @@ inboundMethodToMsg inboundMethod =
             ConnectedToServer
 ```
 
-In this implementation the `Main` module knows about specific constructors of its submodules' `Msg` types, undermining modularization.
+In this implementation the `Main` module has to know about specific constructors of its submodules' `Msg` types to correctly handle port subscriptions, undermining modularization. 
 
 Moreover, the two port functions have the most generic type signatures, `Json.Encode.Value`, in order to be so flexible. This cripples compile time type safety for them. There will still be no runtime crash thanks to how JSON decoding works in Elm, but this does increase the chance of logic bugs at runtime. And it also means that you'll have to write and maintain that decoder, which is one of the less pleasant aspects of Elm.
 
-## Thoughts
+# So When to Use Which?
 
-I think a key question to ask is: between modularization within Elm or separation of Elm and Elm-JavaScript interoperation, across which dimension would you like to maintain your separation of concerns? Both are important, so it's a hard decision. 
+The first question to ask is how large your Elm-JavaScript interoperation would be. If it's not going to be much, individual ports approach is simpler and more intuitive to implement.
 
-Then this question might help: do Elm-JavaScript interoperation codes in your application change more quickly than the structure and composition of your Elm modules? It always makes sense to have quickly changing parts easier to modify, because that's where you'll be spending most of your time. 
+But if your application is going to have nontrivial amount of interoperation, then this question helps: between the structure of your Elm modules and Elm-JavaScript interoperation codes, which changes more quickly in your application?
 
-If have a lot of Elm-JavaScript interoperation, then it'd be better to use centralized ports approach to handle all your interoperation codes in just two modules - `Main` and `Port` modules. On the other hand, if most business logics are handled within Elm, then individual ports approach might be the one for you. 
+If your Elm code changes more quickly, then individual ports approach might be better because of clean boundary among Elm modules. Otherwise, centralized ports approach might be better because of clean boundary between domains. It always makes sense to have quickly changing parts easier to modify, because that's where you'll be spending most of your time. 
 
-My experience is that once written, Elm codes are extremely sturdy and require little change. It's usually the JavaScript codes that are flaky because of the language and ecosystem characteristics. So if you aren't sure, I think centralized ports approach is a safe bet because it's better at controlling the border with unsafe JavaScript land. 
+My experience is that once written, Elm codes are extremely sturdy and require little change. On the other hand, JavaScript codes tend to change often because of the inherent language and ecosystem characteristics. So if you aren't sure, centralized ports approach would be a safer bet in the long run.
+
+I wish there was another way that had only the benefits of both approaches, but couldn't come up with it. If you know a better approach, please tell me about it!
